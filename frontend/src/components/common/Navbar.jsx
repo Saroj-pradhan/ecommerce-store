@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import {HiOutlineUser ,HiOutlineShoppingBag, HiBars3BottomRight } from "react-icons/hi2"
 import { IoMdClose } from "react-icons/io";
@@ -38,7 +37,7 @@ function Navbar() {
       </nav>
       <Cart cartOpen={cartOpen} cartToggle={cartToggle}/>
      {/* mobile nav drawer */}
-     <div className={`fixed top-0 left-0 bg-white h-full w-2/4  sm:w-1/4 transform transition-transform duration-300  ${navDrawerOpen?"translate-x-0":"-translate-x-full"}`}>
+     <div className={`fixed top-0 left-0 bg-white h-full w-2/4  z-50 sm:w-1/4 transform transition-transform duration-300  ${navDrawerOpen?"translate-x-0":"-translate-x-full"}`}>
       <div onClick={handelnavToggle} className='flex justify-end p-4'>
         <IoMdClose className='h-6 w-6 '/>
         </div>

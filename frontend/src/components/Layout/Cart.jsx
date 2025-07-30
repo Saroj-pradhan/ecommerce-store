@@ -4,7 +4,7 @@ import CartContent from '../cart/CartContent';
 function Cart({cartOpen,cartToggle}) {
     
   return (
-    <div className={`border-2 bg-white h-full w-3/4 sm:w-1/2 md:w-2/7 fixed top-0 right-0 transform transition-transform duration-300 flex flex-col  ${cartOpen?"translate-x-0":"translate-x-full"}`}>
+    <div className={`border-2 bg-white h-full w-3/4 sm:w-1/2 md:w-2/7 z-50 fixed top-0 right-0 transform transition-transform duration-300 flex flex-col  ${cartOpen?"translate-x-0":"translate-x-full"}`}>
         <div className='flex justify-end p-4'>
             <button  className='' onClick={cartToggle}><IoMdClose className='h-6 w-6'/></button>
         </div>
