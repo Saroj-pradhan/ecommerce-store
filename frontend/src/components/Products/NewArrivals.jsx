@@ -94,7 +94,7 @@ function NewArrivals() {
     },
   ];
   return (
-    <div className="mt-12">
+    <div className="mt-12 ml-3 mr-3 sm:m-0 md:m-0 lg:0">
       <div className="text-center  text-3xl flex-col  p-1 m-2">
         <h1 className="uppercase font-semibold text-gray-800 mb-4">
           <span className="text-gray-400">latest</span> collection --

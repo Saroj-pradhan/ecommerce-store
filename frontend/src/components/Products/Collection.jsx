@@ -5,11 +5,11 @@ function Collection() {
   return (
     <section className="py-8 px-4 md:px-0 ">
       <div className="w-full flex flex-col md:flex-row flex-wrap gap-4 ">
-        <div className="relative flex-1">
+        <div className="relative flex-1 ">
           <img
             className="h-[500px] object-cover w-full"
             src={men_img}
-            alt=""
+            alt="men imgs"
             srcset=""
           />
           <div className="bg-white w-[260px] h-[100px] absolute left-6 bottom-8 bg-opacity-9 p-4">

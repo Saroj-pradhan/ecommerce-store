@@ -49,10 +49,10 @@ function ProductDetails() {
     },
   ];
   return (
-    <div className="mt-12 ">
+    <div className="mt-12 ml-3 mr-3 sm:m-0 md:m-0 lg:0">
       <div className="text-center  text-3xl flex-col  p-1 m-2">
         <h1 className="uppercase font-semibold text-gray-800 mb-4">
-          <span className="text-gray-400">-- best</span> seller --
+          <span className="text-gray-400">--Top </span>Selling--
         </h1>
         <p className=" text-xs md:text-sm tracking-tighter text-gray-600">
           Welcome to the ultimate shopping experience — where style, quality,

@@ -2,12 +2,11 @@ import { NavLink } from "react-router-dom";
 import heroImg from "../../assets/rabbit-hero.webp";
 function Hero() {
   return (
-    <div className="relative ">
+    <div className="relative ml-3 mr-3 sm:m-0 md:m-0 lg:0">
       <img
         className="w-full h-[500px] md:h-[600px] lg:h-600px] object-cover "
         src={heroImg}
         alt="rabbit-hero Image"
-        srcset=""
       />
       <div className="bg-black/25 absolute inset-0 w-full flex flex-col justify-center items-center ">
         <h3 className="text-4xl md:text-7xl text-white font-bold uppercase">
