@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductDetails from "./ProductDetails";
-
+import {toast} from "sonner"
 function BestSeller() {
   const productDetails = [
     {
@@ -25,17 +24,63 @@ function BestSeller() {
       ],
     },
   ];
-  
-  const [mainImg, setmainImg] = useState(null);
-  const handelmainImage = (recivedurl)=>{
 
+  const [mainImg, setmainImg] = useState(null);
+    const [selectedSize, setselectedSize] = useState(null);
+    const [selectedColor, setselectedColor] = useState(null);
+    const [quantity , setquantity] = useState(1);
+    const [disableButton , setdisableButton] = useState(false)
+    // image hadeling function
+  const handelmainImage = (recivedurl) => {
     setmainImg(recivedurl);
+  };
+  //size  hadeling function
+  const handelSizeSelection = (size)=>{
+setselectedSize(size);
   }
-  useEffect(()=>{
-    if(productDetails[0]?.images[0]?.length){
-        setmainImg(productDetails[0].images[0]?.url);
+  //color  hadeling function
+  const handelColorSelection = (col)=>{
+setselectedColor(col);
+  }
+  // quantity handeling function 
+  const handelQuantityChange = (val)=>{
+    if (val === "minus"){
+       quantity>1 && setquantity((x)=>x-1)
+       }else{ 
+      setquantity((x)=>x+1)
+    };
+  }
+// handel addtocart function 
+const handeladdToCart = ()=>{
+  if(!selectedSize){
+    toast.error("please select size" , {
+      duration:1000
+    });
+    return;
+  }
+  if(!selectedColor){
+  toast.error("please select color",{
+      duration:1000
+    });
+    return;
+  }
+  setdisableButton(true);
+   toast.success("Product Added to cart",{duration:1000});
+  setTimeout(()=>{
+    setdisableButton(false);
+  },500)
+ 
+  }
+  
+  useEffect(() => {
+    console.log("under con");
+    
+    if (productDetails[0]?.images[0].url) {
+      setmainImg(productDetails[0].images[0]?.url);
+      console.log(productDetails[0].images[0]?.url);
     }
-  },[productDetails])
+    console.log("under completed");
+  }, []);
   return (
     <div className="p-1 md:p-6 ">
       <div className="max-w-6xl ">
@@ -52,12 +97,18 @@ function BestSeller() {
           {/* left side */}
           <div>
             {productDetails[0].images.map((imgs, index) => (
-              <div className={`w-20 h-20 m-2 rounded-b-lg object-cover p-0.5 hidden md:block ${(mainImg === imgs.url)?"border-2 border-black":"border-gray-500"}`}>
+              <div
+                className={`w-20 h-20 m-2 rounded-b-lg object-cover p-0.5 hidden md:block ${
+                  mainImg === imgs.url
+                    ? "border-2 border-black"
+                    : "border-gray-500"
+                }`}
+              >
                 <img
                   key={index}
                   src={imgs.url}
                   alt={imgs.alt || `Thumnail ${index}`}
-                  onClick={()=> handelmainImage(imgs.url)}
+                  onClick={() => handelmainImage(imgs.url)}
                 />
               </div>
             ))}
@@ -65,7 +116,7 @@ function BestSeller() {
           <div className="w-[100%] md:min-w-[40%] md:w-1/2 ">
             <div>
               <img
-                src={mainImg || ProductDetails[0]?.images[0]?.url}
+                src={mainImg}
                 alt="img"
                 className="object-cover w-full min-h-[80%] "
               />
@@ -74,12 +125,18 @@ function BestSeller() {
           {/* mobile view */}
           <div className="flex md:hidden mt-2 sm:mb-2 ">
             {productDetails[0].images.map((imgs, index) => (
-              <div className={`w-20 h-20 m-2 rounded-b-lg object-cover ${(mainImg === imgs.url)?"border-2 border-black":"border-gray-500"}`}>
+              <div
+                className={`w-20 h-20 m-2 rounded-b-lg object-cover ${
+                  mainImg === imgs.url
+                    ? "border-2 border-black"
+                    : "border-gray-500"
+                }`}
+              >
                 <img
                   key={index}
                   src={imgs.url}
                   alt={imgs.alt || `Thumnail ${index}`}
-                onClick={()=> handelmainImage(imgs.url)}
+                  onClick={() => handelmainImage(imgs.url)}
                 />
               </div>
             ))}
@@ -105,7 +162,8 @@ function BestSeller() {
                 {productDetails[0].colors.map((col, index) => (
                   <button
                     key={index}
-                    className={`rounded-full h-6 w-6 m-2`}
+                    onClick={()=>handelColorSelection(col)}
+                    className={`rounded-full h-6 w-6 m-2 border-2 ${col === selectedColor ? " border-black":"border-gray-50"}`}
                     style={{ backgroundColor: col.toLowerCase() }}
                   ></button>
                 ))}
@@ -117,8 +175,9 @@ function BestSeller() {
               <div>
                 {productDetails[0].material.map((size, index) => (
                   <button
+                  onClick={()=>handelSizeSelection(size)}
                     key={index}
-                    className={`border-2 border-gray-200 bg-gray-200 rounded h-10 w-10 m-2  `}
+                    className={`border-2   rounded h-10 w-10 m-2 ${size === selectedSize ? " border-black text-white bg-black":"border-gray-200 bg-gray-200"} `}
                   >
                     {size}
                   </button>
@@ -131,12 +190,14 @@ function BestSeller() {
               <div>
                 <button
                   className={`border-2 border-gray-200 bg-gray-200 text-center rounded h-6 w-6 m-2 p-0.5 text-xs`}
+                  onClick={()=> handelQuantityChange("minus")}
                 >
                   -
                 </button>
-                <p className="inline-block m-1">5</p>
+                <p className="inline-block m-1">{quantity}</p>
                 <button
                   className={`border-2 border-gray-200 bg-gray-200 text-center rounded h-6 w-6 m-2 p-0.5 text-xs`}
+                   onClick={()=> handelQuantityChange("plus")}
                 >
                   +
                 </button>
@@ -144,8 +205,11 @@ function BestSeller() {
             </div>
             {/* checkout btn */}
             <div>
-              <button className="px-14 py-2 mt-1.5 border-2 bg-black text-white rounded">
-                Add To Cart
+              <button 
+              onClick={handeladdToCart}
+              disabled={disableButton}
+              className={`px-14 py-2 mt-1.5 border-2  text-white rounded ${disableButton?"bg-gray-600 cursor-not-allowed":"bg-black"}`}>
+                {disableButton?"Adding ...":"Add To Cart"}
               </button>
             </div>
           </div>
