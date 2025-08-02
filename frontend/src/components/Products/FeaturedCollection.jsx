@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 function FeaturedCollection() {
   return (
 
@@ -8,10 +8,10 @@ function FeaturedCollection() {
                 <p className='font-semibold mb-2'>Comfort and Style</p>
                 <h1 className='text-2xl md:text-4xl font-bold mb-2'>Apparel made for your <br></br>everyday life</h1>
                 <p className='text-gray-500 mb-2'>Lorem ipsum rem cum facilis temporibus asperiores dignissimos rerum omnis, dolor ducimus? Dolorem quidem porro perferendis fuga accusamus, rerum expedita reprehenderit, tempore maiores laboriosam hic.</p>
-                <button 
+                <Link to="/collections/all"
               className={`px-14 py-2 mt-1.5 border-2 mb-2 text-white rounded bg-black`}>
                 shop now
-              </button>
+              </Link>
             </div>
             <div className='md:w-[50%] w-[100%] md:h-[450px] bg-green-600 '>
                 <img className='w-full h-full object-cover' src="https://picsum.photos/500/500?random=13" alt="" srcset="" />
