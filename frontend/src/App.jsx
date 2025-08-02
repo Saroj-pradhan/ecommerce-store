@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import { Toaster } from "sonner";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <>
@@ -13,8 +14,9 @@ function App() {
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />}></Route>
           {/*i want to show the Home component by default when the path is "/" so i write  index*/}
-          <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
         </Route>
       </Routes>
     </>

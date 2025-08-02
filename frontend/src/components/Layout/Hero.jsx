@@ -15,10 +15,10 @@ function Hero() {
         <p className="text-4xl md:text-7xl text-white font-bold uppercase mb-3">
           Ready
         </p>
-        <p className=" text-gray-200 text-sm tracking-tighter mb-3">
+        <p className=" text-gray-200 text-sm tracking-tighter mb-3 text-center">
           Explore our Vacation ready outfits with Fast Worldwide shipping
         </p>
-        <NavLink className="text-black bg-white px-7 py-2 rounded ">
+        <NavLink to="signup" className="text-black bg-white px-7 py-2 rounded ">
           Shop Now
         </NavLink>
       </div>
