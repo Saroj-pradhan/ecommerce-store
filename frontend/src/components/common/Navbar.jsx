@@ -20,10 +20,10 @@ function Navbar() {
       <NavLink to="/" className={"text-2xl font-bold"}>SnapCart</NavLink>
      </div>
      <div className='gap-1.5 hidden sm:block'>
-<NavLink className={"px-2"}>MEN</NavLink>
-<NavLink className={"px-2"}>WOMEN</NavLink>
-<NavLink className={"px-2"}>TOP-WEAR</NavLink>
-<NavLink className={"px-2"}>BOTTOM-WEAR</NavLink>
+<NavLink to="/collections/all" className={"px-2"}>MEN</NavLink>
+<NavLink to="/collections/all" className={"px-2"}>WOMEN</NavLink>
+<NavLink to="/collections/all" className={"px-2"}>TOP-WEAR</NavLink>
+<NavLink to="/collections/all" className={"px-2"}>BOTTOM-WEAR</NavLink>
      </div>
      <div className='flex items-center'>
       <NavLink to="/profile" className={"px-1.5 "}> <HiOutlineUser className='h-6 w-6'/></NavLink>
