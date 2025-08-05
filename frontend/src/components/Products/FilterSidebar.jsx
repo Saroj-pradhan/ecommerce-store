@@ -1,6 +1,5 @@
-import React from 'react'
 import { FaFilter } from "react-icons/fa";
-function Filtersidebar() {
+function FilterSidebar() {
     
   return (
        <div className=" w-full h-full flex flex-col p-1 sm:p-0">
@@ -36,4 +35,4 @@ function Filtersidebar() {
   )
 }
 
-export default Filtersidebar
+export default FilterSidebar

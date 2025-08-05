@@ -1,5 +1,5 @@
 import ProductDetails from "../components/Products/ProductDetails";
-import Filtersidebar from "../components/Products/Filtersidebar";
+import FilterSidebar from "../components/Products/FilterSidebar"
 import { useState, useEffect, useRef } from "react";
 import { FaFilter } from "react-icons/fa";
 
@@ -94,7 +94,7 @@ function CollectionPage() {
           ${isSidebar ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}
         `}
       >
-        <Filtersidebar />
+        <FilterSidebar />
       </div>
 
       {/* Product Details */}
