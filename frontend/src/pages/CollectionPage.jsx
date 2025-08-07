@@ -1,8 +1,9 @@
-import ProductDetails from "../components/Products/ProductDetails";
-import FilterSidebar from "../components/Products/FilterSidebar"
+import ProductDetails from "../components/Products/TopSelling";
+import FilterSidebar from "../components/Products/FilterSidebar";
+import FilteredProduct from "../components/Products/FilteredProduct";
 import { useState, useEffect, useRef } from "react";
 import { FaFilter } from "react-icons/fa";
-
+import SortOptions from "../components/Products/SortOptions";
 function CollectionPage() {
   const [product, setProduct] = useState([]);
   const [isSidebar, setIsSidebar] = useState(false);
@@ -99,7 +100,10 @@ function CollectionPage() {
 
       {/* Product Details */}
       <div className="sm:w-4/5 w-full px-2">
-        <ProductDetails />
+      <div>
+        < SortOptions />
+      </div>
+        <FilteredProduct products={product}/>
       </div>
     </div>
   );

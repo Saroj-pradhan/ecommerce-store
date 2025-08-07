@@ -1,38 +1,198 @@
 import { FaFilter } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 function FilterSidebar() {
-    
+  const [searchParams, setsearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [filters, setfilters] = useState({
+    categories: [],
+    genders: [],
+    materials: [],
+    brands: [],
+    size: [],
+    minPrice: 0,
+    maxPrice: 100,
+  });
+  const [priceRange, setpriceRange] = useState([0, 100]);
+
+  const categories = ["top wear", "buttom wear"];
+  const genders = ["Man", "Women", "kids"];
+  const size = ["xs", "s", "m", "l", "xl", "xxl"];
+  const materials = [
+    "cotton",
+    "silk",
+    "wool",
+    "linen",
+    "polyester",
+    "nylon",
+    "lycra",
+    "viscose",
+  ];
+
+  const brands = ["Nike", "Adidas", "Puma", "Levi's", "Zara", "H&M", "Uniqlo"];
+
+  useEffect(() => {
+    const params = Object.fromEntries([...searchParams]);
+    console.log(searchParams,"ser")
+    console.log(filters)
+    setfilters({
+      categories: params.categories ?params.categories.split(","): [],
+      genders: params.genders?params.genders.split(",") : [],
+      materials: params.materials ? params.materials.split(",") : [],
+      brands: params.brands ? params.brands.split(",") : [],
+      size: params.size ? params.size.split(",") : [],
+      minPrice: Number(params.minPrice) || 0,
+      maxPrice: Number(params.maxPrice) || 100,
+    });
+    setpriceRange([0,Number( params.maxPrice) || 100]);
+    // setpriceRange([Number(newFilters.minPrice), Number(newFilters.maxPrice)]);
+  }, [searchParams]);
+
+  const handelfilter = (e) => {
+    const { name, type, value, checked } = e.target;
+    let newfilters = { ...filters };
+    if (type === "checkbox") {
+      if (checked) {
+        newfilters[name] = [...(newfilters[name] || []), value];
+      } else {
+        newfilters[name] = newfilters[name].filter((item) => item !== value);
+      }
+    } else {
+      newfilters[name] = value;
+    }
+    setfilters(newfilters);
+    updateUrlParams(newfilters);
+  };
+  const updateUrlParams = (newfilters) => {
+    const param = new URLSearchParams();
+    Object.keys(newfilters).forEach((key) => {
+      if (Array.isArray(newfilters[key]) && newfilters[key].length > 0) {
+        param.append(key, newfilters[key].join(","));
+      } else if (newfilters[key]) {
+        param.append(key, newfilters[key]);
+      }
+    });
+    setsearchParams(param);
+    navigate(`?${param.toString()}`);
+  };
+
+  const handelpriceChange = (e)=>{
+    console.log("hhhhh",e.target.value)
+const newPrice = parseInt(e.target.value);
+  setpriceRange([0,newPrice]);
+  const newfilter = {...filters,minPrice:0,maxPrice:newPrice};
+  setfilters(newfilter);
+  updateUrlParams(newfilter);
+  }
   return (
-       <div className=" w-full h-full flex flex-col p-1 sm:p-0">
-      
+    <div className=" w-full h-full flex flex-col p-1 sm:p-0">
       <div className="flex  items-center  text-xl pt-5 sm:pt-0.5 ">
-           <FaFilter /><p className="uppercase ">Filters</p>
-         </div>
+        <FaFilter />
+        <p className="uppercase ">Filters</p>
+      </div>
+
+      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
+        <h3 className="text-s uppercase">prices</h3>
+
+        <input
+          type="range"
+          name="pricerange"
+          // onChange={handelfilter}
+          onChange={handelpriceChange}
+          min={0}
+          max={150}
+          value={Number(priceRange[1])}
+          className="bg-gray-300 text-black appearance-none rounded h-2 cursor-pointer"
+        />
+        <div className="flex justify-between text-gray-600 mt-2">
+          <span>0</span>
+          <span>{priceRange[1]}</span>
+        </div>
+      </div>
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">categories</h3>
-        <label><input type="checkbox" value="topwear" /> Topwear</label>
-        <label><input type="checkbox" value="buttomwear"/> Buttomwear</label>
+
+        {categories.map((category) => (
+          <label className="uppercase">
+            <input
+              name="categories"
+              onChange={handelfilter}
+              type="checkbox"
+              checked={filters.categories.includes(category)}
+              value={category}
+            />{" "}
+            {category}
+          </label>
+        ))}
       </div>
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">gender</h3>
-        <label><input type="checkbox" value="men" /> Men</label>
-        <label><input type="checkbox" value="women" /> Women</label>
-        <label><input type="checkbox" value="kids" /> Kids</label>
+        {genders.map((gender) => (
+          <label className="">
+            <input
+              name="genders"
+              onChange={handelfilter}
+              checked={filters.genders.includes(gender)}
+              type="checkbox"
+              value={gender}
+            />{" "}
+            {gender}
+          </label>
+        ))}
       </div>
-  
-        <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
-           <h3 className="text-s uppercase">size</h3>
-           <label className="uppercase"><input type="checkbox" value="xs" /> XS</label>
-           <label className="uppercase"><input type="checkbox" value="s"/> s</label>
-           <label className="uppercase"><input type="checkbox" value="m"/> m</label>
-           <label className="uppercase"><input type="checkbox" value="l"/> l</label>
-           <label className="uppercase"><input type="checkbox" value="xl"/> xl</label>
-           <label className="uppercase"><input type="checkbox" value="xll"/> xll</label>
-        
-       </div>
+
+      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
+        <h3 className="text-s uppercase">size</h3>
+
+        {size.map((s) => (
+          <label className="uppercase">
+            <input
+              name="size"
+              onChange={handelfilter}
+               checked={filters.size.includes(s)}
+              type="checkbox"
+              value={s}
+            />{" "}
+            {s}
+          </label>
+        ))}
+      </div>
+
+      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
+        <h3 className="text-s uppercase">Material</h3>
+        {materials.map((material) => (
+          <label className="uppercase ">
+            <input
+              name="materials"
+              onChange={handelfilter}
+               checked={filters.materials.includes(material)}
+              type="checkbox"
+              value={material}
+            />{" "}
+            {material}
+          </label>
+        ))}
+      </div>
+
+      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
+        <h3 className="text-s uppercase">Brand</h3>
+        {brands.map((brand) => (
+          <label className="uppercase ">
+            <input
+              name="brands"
+              onChange={handelfilter}
+               checked={filters.brands.includes(brand)}
+              type="checkbox"
+              value={brand}
+            />{" "}
+            {brand}
+          </label>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default FilterSidebar
+export default FilterSidebar;

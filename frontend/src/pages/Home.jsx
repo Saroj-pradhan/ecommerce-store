@@ -2,7 +2,8 @@ import React from 'react'
 import Hero from '../components/Layout/Hero'
 import Collection from '../components/Products/Collection'
 import NewArrivals from '../components/Products/NewArrivals'
-import ProductDetails from '../components/Products/ProductDetails'
+// import ProductDetails from '../components/Products/TopSelling'
+import TopSelling from '../components/Products/TopSelling'
 import BestSeller from '../components/Products/BestSeller'
 import FeaturedCollection from '../components/Products/FeaturedCollection'
 function Home() {
@@ -12,7 +13,7 @@ function Home() {
         <Collection/>
         <NewArrivals/>
         <BestSeller/>
-        <ProductDetails/>
+        <TopSelling/>
         <FeaturedCollection/>
     </div>
   )

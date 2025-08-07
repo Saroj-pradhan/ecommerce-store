@@ -1,6 +1,6 @@
 import React from "react";
-
-function ProductDetails() {
+import { NavLink } from "react-router-dom";
+function TopSelling() {
   const newArrival = [
     {
       _id: 1,
@@ -61,7 +61,7 @@ function ProductDetails() {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  mt-4 gap-4 gap-y-6">
         {newArrival.map((Product) => (
-          <div className=" ">
+          <NavLink to={`products/${Product._id}`}>
             <div className="overflow-hidden">
               <img
                 className="h-[270px] w-full object-cover hover:scale-105 transition-all"
@@ -73,11 +73,11 @@ function ProductDetails() {
             </div>
             <p className="mt-1.5 text-gray-500">{Product.name}</p>
             <p>₹{Product.price}</p>
-          </div>
+          </NavLink>
         ))}
       </div>
     </div>
   );
 }
 
-export default ProductDetails;
+export default TopSelling;

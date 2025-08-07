@@ -1,5 +1,5 @@
 import React from "react";
-
+import { NavLink , Navigate } from "react-router-dom";
 function NewArrivals() {
   const newArrival = [
     {
@@ -106,7 +106,7 @@ function NewArrivals() {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  mt-4 gap-4 gap-y-6 ">
         {newArrival.map((Product) => (
-          <div className="  ">
+          <NavLink to={`products/${Product._id}`} className="  ">
             <div className="overflow-hidden">
               <img
                 className="h-[270px] w-full object-cover hover:scale-105 transition-all"
@@ -118,7 +118,7 @@ function NewArrivals() {
             </div>
             <p className="mt-1.5 text-gray-500">{Product.name}</p>
             <p>₹{Product.price}</p>
-          </div>
+          </NavLink>
         ))}
       </div>
     </div>
