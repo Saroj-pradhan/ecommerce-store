@@ -86,9 +86,9 @@ function MyOrders() {
   <thead className="bg-gray-200 ">
     <tr>
       <th className="p-3 text-left ">Image</th>
-      <th className="p-3 text-left hidden sm:inline-block md:inline-block lg:inline-block">Order ID</th>
-      <th className="p-3 text-left hidden sm:inline-block md:inline-block lg:inline-block">Created Date</th>
-      <th className="p-3 text-left hidden sm:inline-block md:inline-block lg:inline-block">Shipping Address</th>
+      <th className="p-3 text-left hidden sm:inline-block">Order ID</th>
+      <th className="p-3 text-left hidden sm:inline-block">Created Date</th>
+      <th className="p-3 text-left hidden sm:inline-block">Shipping Address</th>
       <th className="p-3 text-left ">Item</th>
       <th className="p-3 text-left ">Price</th>
       <th className="p-3 text-left ">Status</th>
