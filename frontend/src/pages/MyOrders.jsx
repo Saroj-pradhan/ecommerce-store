@@ -1,28 +1,30 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 function MyOrders() {
+  const navigate = useNavigate();
       const orderInfo = [
-        {
-            imgs:"https://picsum.photos/500/500?random=15",
-            orderId:173246872364,
-            created:"22-12-2330",
-            adress:"761209,india",
-            item:1,
-            price:4433,
-            status:"ordered"
-
-        },
-        {
-            imgs:"https://picsum.photos/500/500?random=13",
-            orderId:173246872364,
-            created:"22-12-2330",
-            adress:"761209,india",
-            item:3,
-            price:4433,
-            status:"delivered"
-
-        },
-         {
+  {
+    _id: 344,
+    imgs: "https://picsum.photos/500/500?random=15",
+    orderId: 173246872364,
+    created: "22-12-2330",
+    adress: "761209,india",
+    item: 1,
+    price: 4433,
+    status: "ordered"
+  },
+  {
+    _id: 33222,
+    imgs: "https://picsum.photos/500/500?random=13",
+    orderId: 173246872364,
+    created: "22-12-2330",
+    adress: "761209,india",
+    item: 3,
+    price: 4433,
+    status: "delivered"
+  },
+  {
+    _id: 3332,
     imgs: "https://picsum.photos/500/500?random=14",
     orderId: 173246872365,
     created: "23-12-2330",
@@ -32,6 +34,7 @@ function MyOrders() {
     status: "pending"
   },
   {
+    _id: 8754,
     imgs: "https://picsum.photos/500/500?random=18",
     orderId: 173246872366,
     created: "24-12-2330",
@@ -41,6 +44,7 @@ function MyOrders() {
     status: "shipped"
   },
   {
+    _id: 2983,
     imgs: "https://picsum.photos/500/500?random=21",
     orderId: 173246872367,
     created: "25-12-2330",
@@ -50,6 +54,7 @@ function MyOrders() {
     status: "delivered"
   },
   {
+    _id: 5678,
     imgs: "https://picsum.photos/500/500?random=29",
     orderId: 173246872368,
     created: "26-12-2330",
@@ -59,6 +64,7 @@ function MyOrders() {
     status: "cancelled"
   },
   {
+    _id: 9021,
     imgs: "https://picsum.photos/500/500?random=33",
     orderId: 173246872369,
     created: "27-12-2330",
@@ -68,6 +74,7 @@ function MyOrders() {
     status: "delivered"
   },
   {
+    _id: 12345,
     imgs: "https://picsum.photos/500/500?random=37",
     orderId: 173246872370,
     created: "28-12-2330",
@@ -76,7 +83,11 @@ function MyOrders() {
     price: 3890,
     status: "shipped"
   }
-    ]
+];
+     
+     const handelorderDetail = (orderId)=>{
+      navigate(`/products/${orderId}`);
+    }
   return (
     
     <div className='w-[100%] md:h-screen bg-gray-50 border-2 border-gray-100  '>
@@ -97,7 +108,7 @@ function MyOrders() {
 
   <tbody>
     {orderInfo.map((order, index) => (
-      <tr key={index} className="border-b hover:bg-black hover:text-white">
+      <tr key={index} className="border-b hover:bg-black hover:text-white" onClick={()=>handelorderDetail(order._id)} >
         <td className="p-2">
           <img src={order.imgs} alt="product" className="w-16 h-16 object-cover" />
         </td>

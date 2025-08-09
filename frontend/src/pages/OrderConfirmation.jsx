@@ -1,6 +1,13 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 function OrderConfirmation() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+    navigate("/orderDetails/34")
+    },4000)
+    return()=> clearTimeout(timer);
+  })
   const checkout = {
     orderItem: [
       {
@@ -39,7 +46,7 @@ function OrderConfirmation() {
         <h2 className="text-2xl text-green-700 font-bold my-4 ">
           Thank You For Your Order !
         </h2>
-        <div className="h-fit  border-2  sm:w-[70%]  w-[100%] p-2 bg-gray-50 shadow-2xl border-gray-100 ">
+        <div className="h-fit  border-2  sm:w-[70%]  w-[100%] p-2 bg-gray-50 shadow-2xs border-gray-100 ">
           <div className="flex justify-between pb-4 border-b-2 border-gray-200">
             <div>
               <p className="font-semibold">Order Id {checkout.orderId}</p>
@@ -57,7 +64,7 @@ function OrderConfirmation() {
               ).toLocaleDateString()}
             </p>
           </div>
-          <div className="pb-4 border-b-2 border-gray-200">
+          <div className="pb-4 border-b-2 border-gray-200 overflow-y-scroll max-h-[500px]">
             {checkout.orderItem.map((product) => (
               <div className="pt-4" key={product.produtId}>
                 <div className="flex justify-between items-center">
@@ -65,7 +72,7 @@ function OrderConfirmation() {
                     <img
                       className="h-[70px] w-[70px] rounded"
                       src={product.img}
-                      alt=""
+                      alt={product.name}
                     />
                     <div>
                       <p className="text-black">{product.name}</p>
