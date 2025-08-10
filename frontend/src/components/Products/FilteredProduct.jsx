@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  useSearchParams } from 'react-router-dom'
+import {  useSearchParams ,NavLink} from 'react-router-dom'
 function FilteredProduct() {
     const [searchParams,setsearchParams] = useSearchParams();
     const [filters , setfilters] = useState({
@@ -12,10 +12,101 @@ function FilteredProduct() {
         maxPrice:133
     });
     const [priceRange , setpriceRange] = useState([0,100]);
+      const newArrival = [
+    {
+      _id: 1,
+      name: "Stylish jacket",
+      price: 1200,
+      images: {
+        url: "https://picsum.photos/500/500?random=7",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 2,
+      name: "Stylish Shoes",
+      price: 1893,
+      images: {
+        url: "https://picsum.photos/500/500?random=2",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 3,
+      name: "Half Pant",
+      price: 650,
+      images: {
+        url: "https://picsum.photos/500/500?random=3",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 4,
+      name: "Stylish t-shirt",
+      price: 900,
+      images: {
+        url: "https://picsum.photos/500/500?random=4",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 5,
+      name: "Jeans Pants",
+      price: 990,
+      images: {
+        url: "https://picsum.photos/500/500",
+        altText: "Stylish jacket",
+      },
+    },
+     {
+      _id: 3,
+      name: "Half Pant",
+      price: 650,
+      images: {
+        url: "https://picsum.photos/500/500?random=17",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 4,
+      name: "Stylish t-shirt",
+      price: 900,
+      images: {
+        url: "https://picsum.photos/500/500?random=14",
+        altText: "Stylish jacket",
+      },
+    },
+    {
+      _id: 5,
+      name: "Jeans Pants",
+      price: 990,
+      images: {
+        url: "https://picsum.photos/500/800",
+        altText: "Stylish jacket",
+      },
+    },
+  ];
   return (
     <div>
-       so
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  mt-4 gap-4 gap-y-6">
+        {newArrival.map((Product) => (
+          <NavLink to={`products/${Product._id}`}>
+            <div className="overflow-hidden">
+              <img
+                className="h-[270px] w-full object-cover hover:scale-105 transition-all"
+                draggable="false"
+                src={Product.images.url}
+                alt={Product.images.altText}
+                srcset={Product}
+              />
+            </div>
+            <p className="mt-1.5 text-gray-500">{Product.name}</p>
+            <p>₹{Product.price}</p>
+          </NavLink>
+        ))}
+      </div>
     </div>
+   
   )
 }
 

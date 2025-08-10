@@ -7,6 +7,7 @@ import Cart from '../Layout/Cart'
 function Navbar() {
   const [cartOpen , setcartOpen] = useState(false);
   const [navDrawerOpen ,setnavDrawerOpen] = useState(false);
+  
     const cartToggle = ()=>{
         setcartOpen((pr)=>!pr);
     }
@@ -20,12 +21,13 @@ function Navbar() {
       <NavLink to="/" className={"text-2xl font-bold"}>SnapCart</NavLink>
      </div>
      <div className='gap-1.5 hidden sm:block'>
-<NavLink to="/collections/Men" className={"px-2"}>MEN</NavLink>
-<NavLink to="/collections/Women" className={"px-2"}>WOMEN</NavLink>
-<NavLink to="/collections/TopWear" className={"px-2"}>TOP-WEAR</NavLink>
-<NavLink to="/collections/ButtomWear" className={"px-2"}>BOTTOM-WEAR</NavLink>
+         <NavLink to="/collections/Men" className={"px-2"}>MEN</NavLink>
+         <NavLink to="/collections/Women" className={"px-2"}>WOMEN</NavLink>
+         <NavLink to="/collections/TopWear" className={"px-2"}>TOP-WEAR</NavLink>
+         <NavLink to="/collections/ButtomWear" className={"px-2"}>BOTTOM-WEAR</NavLink>
      </div>
      <div className='flex items-center'>
+      <NavLink to="/admin" className={"text-xs px-1 sm:px-2 rounded bg-black text-white"}>Admin</NavLink>
       <NavLink to="/profile" className={"px-1.5 "}> <HiOutlineUser className='h-6 w-6'/></NavLink>
       <button className='relative px-1.5' onClick={cartToggle}>
         <HiOutlineShoppingBag className='h-5 w-5'/>
@@ -39,7 +41,7 @@ function Navbar() {
      {/* mobile nav drawer */}
      <div className={`fixed top-0 left-0 bg-white h-full w-2/4  z-50 sm:w-1/4 transform transition-transform duration-300  ${navDrawerOpen?"translate-x-0":"-translate-x-full"}`}>
       <div onClick={handelnavToggle} className='flex justify-end p-4'>
-        <IoMdClose className='h-6 w-6 '/>
+        <IoMdClose className='h-6 w-6'/>
         </div>
       <div className='p-4'>
         <h2 className='text-2xl'>Menu</h2>

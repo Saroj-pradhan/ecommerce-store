@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Checkout() {
   const navigate = useNavigate();
+  console.log(import.meta.env.VITE_Rajaropay_Test_Key);
   const cart = {
     cardProduct: [
       {
@@ -74,7 +75,7 @@ function Checkout() {
     }
 
     const options = {
-      key: "rzp_test_EbhQinjbImaiQp", // Replace with your Test Key from Razorpay Dashboard
+      key: import.meta.env.VITE_Rajaropay_Test_Key, // Replace with your Test Key from Razorpay Dashboard 
       amount: cart.total * 100, // amount in paise
       currency: "INR",
       name: "My Store",
