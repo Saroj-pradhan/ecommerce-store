@@ -11,7 +11,11 @@ import Checkout from "../components/cart/Checkout";
 import OrderConfirmation from "../pages/OrderConfirmation";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import MyOrders from "../pages/MyOrders";
-import AdminLayout from "../components/Admin/AdminLayout"
+import AdminLayout from "../components/Admin/AdminLayout";
+import UserManagement from '../components/Admin/UserManagement';
+import AdminHomePage from "../pages/AdminHomePage"
+import OrderManagement from '../components/Admin/OrderManagement';
+import ProductMangaement from '../components/Products/ProductMangaement';
 function Router() {
   return (
     <div>
@@ -30,7 +34,12 @@ function Router() {
           <Route path='/order-confirmation' element={<OrderConfirmation/>}></Route>
           <Route path="/orderDetails/:id" element={<OrderDetailsPage/>}></Route>
           <Route path="/my-orders" element={<MyOrders/>}></Route>
-          <Route path="/admin" element={<AdminLayout/>}></Route>
+          <Route path="/admin" element={<AdminLayout/>}>
+          <Route index  element={<AdminHomePage/>}></Route>
+           <Route  path='/admin/ordermanagement' element={<OrderManagement/>}></Route>
+          <Route path="/admin/usermanagement" element={ <UserManagement/>}></Route>
+          <Route path="/admin/productManage" element={<ProductMangaement/>}></Route>
+          </Route>
         </Route>
       </Routes>
 
