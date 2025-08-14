@@ -24,7 +24,7 @@ function AdminHomePage() {
         <div className='sm:w-[33%] w-full shadow-lg h-[100px] p-2 m-1 mb-1 border-b-2'><h3 className='text-xl font-semibold '>Total Orders</h3><p>40</p></div>
         </div>
          <h2 className='text-2xl mt-2'>Recent Orders</h2>
-          <div className='w-full mt-3'>
+          <div className='w-full mt-3 overflow-y-scroll overflow-x-scroll'>
            <table className='w-full p-2 '>
              <thead>
                 <tr className='bg-gray-300 w-full p-2'>

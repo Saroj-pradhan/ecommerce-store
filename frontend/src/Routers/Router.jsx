@@ -16,6 +16,7 @@ import UserManagement from '../components/Admin/UserManagement';
 import AdminHomePage from "../pages/AdminHomePage"
 import OrderManagement from '../components/Admin/OrderManagement';
 import ProductMangaement from '../components/Products/ProductMangaement';
+import ProductEditPage from '../pages/ProductEditPage';
 function Router() {
   return (
     <div>
@@ -39,6 +40,7 @@ function Router() {
            <Route  path='/admin/ordermanagement' element={<OrderManagement/>}></Route>
           <Route path="/admin/usermanagement" element={ <UserManagement/>}></Route>
           <Route path="/admin/productManage" element={<ProductMangaement/>}></Route>
+          <Route path="/admin/productManage/:id" element={<ProductEditPage/>}></Route>
           </Route>
         </Route>
       </Routes>

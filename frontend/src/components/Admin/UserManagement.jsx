@@ -28,7 +28,7 @@ function UserManagement() {
   }
 
   const handelDeleteuser = (mail)=>{
-    console.log("sjdbfdsjs");
+  
    setuserdata((prev)=>(
     prev.filter((person)=>(
   person.email !== mail
