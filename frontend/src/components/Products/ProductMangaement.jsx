@@ -75,7 +75,7 @@ function ProductMangaement() {
                 <h2 className='text-2xl font-semibold p-2'>ProductMangaement</h2>
             </div>
             <div className='w-full p-1 overflow-y-scroll overflow-x-scroll'>
-                <table className=''>
+                <table className='w-full'>
                     <thead>
                         <tr className='bg-gray-300'>
                             <th className='text-left text-xl font-medium p-3 sm:p-2'>Name</th>
