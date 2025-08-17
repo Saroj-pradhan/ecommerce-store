@@ -4,7 +4,8 @@ const app = express();
 
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
-const Productroutes = require("./routes/productRoutes")
+const Productroutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes")
 // .env varibale load into process.env
 const dotenv = require("dotenv");
 dotenv.config();
@@ -18,6 +19,7 @@ app.get("/",(req,res)=>{
 //All api endpoint related to /user
 app.use("/user",userRoutes);
 app.use("/products",Productroutes);
+app.use("/cart",cartRoutes);
 //defining port no
 const port = process.env.PORT || 5000;
 
