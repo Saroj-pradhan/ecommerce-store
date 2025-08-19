@@ -5,7 +5,9 @@ const app = express();
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const Productroutes = require("./routes/productRoutes");
-const cartRoutes = require("./routes/cartRoutes")
+const cartRoutes = require("./routes/cartRoutes");
+const checkoutRoutes = require("./routes/checkoutRoutes");
+const orderRoutes = require("./routes/orderRoutes")
 // .env varibale load into process.env
 const dotenv = require("dotenv");
 dotenv.config();
@@ -20,6 +22,8 @@ app.get("/",(req,res)=>{
 app.use("/user",userRoutes);
 app.use("/products",Productroutes);
 app.use("/cart",cartRoutes);
+app.use("/checkout",checkoutRoutes);
+app.use("/orders",orderRoutes);
 //defining port no
 const port = process.env.PORT || 5000;
 
@@ -27,5 +31,5 @@ const port = process.env.PORT || 5000;
 connectDB();
 // listening to server at port 
 app.listen(port,()=>{
-    console.log("server started at 3000")
+    console.log("server started at ",port);
 });

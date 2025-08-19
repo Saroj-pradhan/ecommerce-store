@@ -24,7 +24,7 @@ function Checkout() {
         img: "https://picsum.photos/200/300?random=2",
       },
     ],
-    total: 5000,
+    total: 2000,
   };
 
   const [checkoutId, setcheckoutId] = useState(null);

@@ -81,7 +81,7 @@ router.put("/",async (req,res)=>{
     try {
         const {productId,quantity,guestId,userId,size,color} = req.body;
         const carts = await getCart(userId,guestId);
-        if(!carts) return res.send("cart not found");
+        if(!carts) return res.status(404).send("cart not found");
         const product   = await Product.findById(productId);
         if(!product) return res.send("product not found");
 
@@ -120,11 +120,11 @@ router.post("/merge",protect,async (req,res)=>{
             }
             if(userCart){
                 guestCart.products.forEach((guestItem)=>{
-              const productIndex = usercart.products.findIndex(
+              const productIndex = userCart.products.findIndex(
         (p)=>p.productId.toString() === guestItem.productId.toString() && (guestItem.color ? p.color === guestItem.color : true) &&  (guestItem.size ? p.size === guestItem.size : true) 
         )
             if(productIndex > -1){
-                userCart.products[productindex].auantity += guestItem.quantity;
+                userCart.products[productIndex].quantity += guestItem.quantity;
             }else{
                 userCart.products.push(guestItem)
             }
@@ -158,7 +158,7 @@ router.post("/merge",protect,async (req,res)=>{
 
     } catch (error) {
         console.log("Error",error);
-    res.status(505).send("Server Error");
+    res.status(500).send("Server Error");
     }
 })
 
