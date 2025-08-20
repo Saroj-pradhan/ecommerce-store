@@ -7,7 +7,8 @@ const userRoutes = require("./routes/userRoutes");
 const Productroutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
-const orderRoutes = require("./routes/orderRoutes")
+const orderRoutes = require("./routes/orderRoutes");
+const uploadRoutes = require("./routes/uploadRoutes")
 // .env varibale load into process.env
 const dotenv = require("dotenv");
 dotenv.config();
@@ -24,6 +25,7 @@ app.use("/products",Productroutes);
 app.use("/cart",cartRoutes);
 app.use("/checkout",checkoutRoutes);
 app.use("/orders",orderRoutes);
+app.use("/upload",uploadRoutes);
 //defining port no
 const port = process.env.PORT || 5000;
 
