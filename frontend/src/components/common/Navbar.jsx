@@ -33,7 +33,7 @@ function Navbar() {
         <HiOutlineShoppingBag className='h-5 w-5'/>
         <span className=' absolute -top-1  text-white bg-red-500 rounded-full px-1.5 py-0.5 text-xs'>4</span>
       </button>
-      <button className='px-2 h-6 w-6'><SearchBar/></button>
+      <div className='px-2 h-6 w-6'><SearchBar/></div>
       <button onClick={handelnavToggle} className={"px-1.5 md:hidden"}> <HiBars3BottomRight className='h-6 w-6'/></button>
      </div>
       </nav>

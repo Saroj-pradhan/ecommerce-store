@@ -22,7 +22,7 @@ try {
     }
 } catch (error) {
     console.log("Error at Protect",error);
-    res.send("Token Verification Failed",error);
+    res.status(401).send("Token Verification Failed",error);
 }
 }
 

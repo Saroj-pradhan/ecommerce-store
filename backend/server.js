@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/",(req,res)=>{
-    res.send("safff  kkkk")
+    res.send("Server is working")
 })
 //All api endpoint related to /user
 app.use("/user",userRoutes);

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { loginUser } from '../Redux/slices/authSlice';
+
+import { useDispatch } from 'react-redux';
 function Login() {
-  const [mail,setmail] = useState("");
+  const dispatch = useDispatch();
+  const [email,setemail] = useState("");
    const [password,setpassword] = useState("");
    const handelLogin = (e)=>{
 e.preventDefault();
-console.log("jii")
-console.log(mail);
-console.log(password);
+dispatch(loginUser({email,password}));
    }
   return (
     <div>
@@ -16,14 +18,14 @@ console.log(password);
             <div className='border-2 w-[100%] md:w-[70%] lg:w-[70%] p-5 border-gray-200 shadow-2xl'>
               <h1 className='text-xl font-semibold mb-2'>Welcome to Snapkart</h1>
               <p className='mb-6'>Enter username & password to Login</p>
-             <form action="" className='flex flex-col '>
+             <form action="" onSubmit={handelLogin} className='flex flex-col '>
            
              <label htmlFor="mail" className='mb-2'>Email Address</label>
-            <input onChange={(e)=>setmail(e.target.value)} value={mail} type="email" id="mail" placeholder='Enter Email Address' className='mb-4 w-full h-9 p-1 rounded focus:outline-gray-500 bg-gray-100'/>
+            <input onChange={(e)=>setemail(e.target.value)} value={email} type="email" id="mail" placeholder='Enter Email Address' className='mb-4 w-full h-9 p-1 rounded focus:outline-gray-500 bg-gray-100'/>
              <label htmlFor="name" className='mb-2'>Enter password</label>
             <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" id="pass" placeholder='Enter Password' className='mb-4 w-full h-9 p-1 rounded focus:outline-gray-500 bg-gray-100'/>
              <button type='submit' className='bg-black text-white text-lg w-full py-1 rounded mb-4'
-             onClick={handelLogin}
+             
              >Login</button>
             </form>
            
@@ -32,7 +34,7 @@ console.log(password);
             
           </div>
           <div className='w-[100%] md:w-[50%] h-[450px]  px-2 '>
-            <img className='h-full w-full object-cover' src="https://picsum.photos/500/500?random=8" alt="" srcset="" />
+            <img className='h-full w-full object-cover' src="https://picsum.photos/500/500?random=8" alt=""  />
           </div>
          </div>
     </div>

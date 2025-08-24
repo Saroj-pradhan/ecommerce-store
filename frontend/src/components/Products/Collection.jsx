@@ -10,7 +10,7 @@ function Collection() {
             className="h-[500px] object-cover w-full"
             src={men_img}
             alt="men imgs"
-            srcset=""
+            
           />
           <div className="bg-white w-[260px] h-[100px] absolute left-6 bottom-8 bg-opacity-9 p-4">
             <h2 className="text-2xl font-bold">Men's Collection</h2>
@@ -27,7 +27,7 @@ function Collection() {
             className="h-[500px] object-cover w-full"
             src={women_img}
             alt=""
-            srcset=""
+            
           />
           <div className="bg-white w-[270px] h-[100px] absolute left-6 bottom-8 bg-opacity-9 p-4">
             <h2 className="text-2xl font-bold">Women's Collection</h2>

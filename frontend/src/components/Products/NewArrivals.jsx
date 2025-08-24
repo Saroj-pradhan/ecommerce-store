@@ -113,7 +113,6 @@ function NewArrivals() {
                 draggable="false"
                 src={Product.images.url}
                 alt={Product.images.altText}
-                srcset=""
               />
             </div>
             <p className="mt-1.5 text-gray-500">{Product.name}</p>

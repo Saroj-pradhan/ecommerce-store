@@ -22,8 +22,8 @@ function CartContent() {
 ]
   return (
     <div>
-        {cardProduct.map((Product)=>(
-         <div className='flex  items-start p-2 justify-between'>
+        {cardProduct.map((Product,index)=>(
+         <div key={index} className='flex  items-start p-2 justify-between'>
         <div className='flex items-center '>
             <img src={Product.img} alt={Product.name} className='w-20 h-24 mr-4 object-cover' />
             <div>

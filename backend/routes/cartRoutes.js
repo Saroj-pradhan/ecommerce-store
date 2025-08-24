@@ -14,6 +14,19 @@ if(userId){
     return null;
 }
 }
+// get cart
+router.get("/",async (req,res)=>{
+    try {
+     const {userId,guestId} = req.query;
+     console.log("dt",userId,guestId)
+     const CartDetail = await getCart(userId,guestId);
+     if(!CartDetail) return res.status(404).send("Cart Not Found");
+     res.status(200).json(CartDetail);
+    } catch (error) {
+         console.log("Error",error);
+    res.status(500).send("Server Error")
+    }
+})
 // add product to cart 
 router.post("/",async (req,res)=>{
 try {
@@ -162,6 +175,33 @@ router.post("/merge",protect,async (req,res)=>{
     }
 })
 
-
+router.delete("/",async (req,res)=>{
+try {
+  const {productId,quantity,guestId,userId,size,color} = req.body;
+  
+  let carts = await getCart(userId,guestId);
+  if(!carts) return res.status(404).send("Cart Not Found");
+ 
+  const productIndex = carts.products.findIndex((p)=>(
+    p.productId.toString() === productId && 
+    (size?p.size=== size:true) && 
+    (color?color === p.color:true)
+  ));
+  console.log(productIndex)
+  if(productIndex >-1){
+    carts.products.splice(productIndex,1);
+    carts.totalPrice = carts.products.reduce((sum,item)=>{
+       return sum+(item.quantity*item.price)
+    },0)
+    await carts.save();
+    return res.status(200).json(carts);
+  }else{
+return res.status(404).send("Product Not Found");
+  }
+}catch (error) {
+    console.log("Error",error);
+    res.status(404).send("Server Error");
+}
+ })
 
 module.exports = router;
