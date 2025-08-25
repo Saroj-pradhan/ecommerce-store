@@ -35,10 +35,12 @@ export const fetchProductsByfilter = createAsyncThunk("/products/filter" ,
 });
 
 // fetch single  product  id
-const fetchproductById = createAsyncThunk("products/fetchProductDetails", 
+export const fetchproductById = createAsyncThunk("products/fetchProductDetails", 
     async (id,{rejectWithValue})=>{
 try {
+    console.log("aaaaaaaaaaa")
     const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`);
+    console.log(response.data,"lll")
     return response.data ; 
 } catch (error) {
     return rejectWithValue(error?.data || "failed to fetch product by id") ;
@@ -81,7 +83,7 @@ const ProductsSlice = createSlice({
     name :"products",
     initialState:{
         products:[],
-        selectedProducts:null,
+        selectedProducts:[],
         similarProducts:[],
         loading:false,
         error:null,
@@ -97,7 +99,8 @@ const ProductsSlice = createSlice({
         clearFilters:(state)=>{
             state.filters = { sortby:"",collection:"",color:"" ,category:"",gender:"",material:"",brand:"",size:"",minPrice:"",maxPrice:"",search:"", limit:""}
         },
-        extaReducers:(builder)=>{
+    },
+        extraReducers:(builder)=>{
       builder
       .addCase(fetchProductsByfilter.pending,(state)=>{
       state.loading=true,
@@ -119,7 +122,8 @@ const ProductsSlice = createSlice({
       })
        .addCase(fetchproductById.fulfilled,(state,action)=>{
       state.loading=false;
-      state.selectedProducts = action.payload? action.payload:[];
+       console.log("reached",action.payload)
+      state.selectedProducts = action.payload? [action.payload]:[];
       state.error=null;
       })
       .addCase(fetchproductById.rejected,(state)=>{
@@ -156,8 +160,8 @@ const ProductsSlice = createSlice({
       state.loading=false,
       state.error=action.error?.message || "failed to fetch the similar Product"
       })
-        }
-    }
+     }
+    
 })
 export const {setFilters,clearFilters} = ProductsSlice.actions;
 export default ProductsSlice.reducer;

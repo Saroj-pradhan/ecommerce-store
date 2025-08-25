@@ -1,31 +1,25 @@
 import { useEffect, useState } from "react";
 import {toast} from "sonner";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate,useParams } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import {fetchproductById} from "../../Redux/slices/productsSlice"
 function ProductDetail() {
     const navigate = useNavigate();
-  const productDetails = [
-    {
-      _id: 1,
-      name: "Stylish jacket",
-      price: 1200,
-      orignalPrice: 1500,
-      description:
-        "veritatis sarok pradhan buhho parila na nai so thanks  praesentium quia officia iste ipsa jdfnjdsf sjdfnsjdf sjdfnsdjf ",
-      brand: "Killer",
-      material: ["S", "M", "L", "XL"],
-      colors: ["red", "blue", "green"],
-      images: [
-        {
-          url: "https://picsum.photos/500/500?random=8",
-          altText: "Stylish jacket",
-        },
-        {
-          url: "https://picsum.photos/500/500?random=9",
-          altText: "Stylish jacket ",
-        },
-      ],
-    },
-  ];
+    const dispatch = useDispatch();
+   
+ const { id } = useParams();
+  console.log("ifjjjj",id);
+    const [productDetail,setproductDetails] = useState([]);
+    const { selectedProducts, loading, error } = useSelector((state) => state.products);
+   useEffect(() => {
+    if (id) {
+      dispatch(fetchproductById(id));
+    }
+  }, [id, dispatch]);
+  //    if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error: {error}</p>;
+  // if (!product) return <p>No product found</p>;
+  
 
     const [mainImg, setmainImg] = useState(null);
     const [selectedSize, setselectedSize] = useState(null);
@@ -49,7 +43,7 @@ setselectedColor(col);
     if (val === "minus"){
        quantity>1 && setquantity((x)=>x-1)
        }else{ 
-      setquantity((x)=>x+1)
+      setquantity((x)=>x+1);
     };
   }
 // handel addtocart function 
@@ -78,109 +72,123 @@ const handeladdToCart = ()=>{
   useEffect(() => {
     console.log("under con");
     
-    if (productDetails[0]?.images[0].url) {
-      setmainImg(productDetails[0].images[0]?.url);
-      console.log(productDetails[0].images[0]?.url);
+    if (selectedProducts[0]?.images[0].url) {
+      setmainImg(selectedProducts[0]?.images[0]?.url);
+      console.log(selectedProducts[0]?.images[0]?.url);
     }
     console.log("under completed");
   }, []);
   return (
-    <div className="p-1 ">
+   <div className="p-1 ">
       <div className="max-w-6xl ">
-        
-        <div className="mx-auto bg-white p-4 md:p-6 round-lg flex flex-col md:flex-row ">
-          {/* left side */}
-          <div>
-            {productDetails[0].images.map((imgs, index) => (
-              <div
-                className={`w-20 h-20 m-2 rounded-b-lg object-cover p-0.5 hidden md:block ${
-                  mainImg === imgs.url
-                    ? "border-2 border-black"
-                    : "border-gray-500"
-                }`}
-              >
-                <img
+        {selectedProducts.length > 0 && (
+          <div className="mx-auto bg-white p-4 md:p-6 round-lg flex flex-col md:flex-row ">
+            {/* left side */}
+            <div>
+              {selectedProducts[0]?.images?.map((imgs, index) => (
+                <div
                   key={index}
-                  src={imgs.url}
-                  alt={imgs.alt || `Thumnail ${index}`}
-                  onClick={() => handelmainImage(imgs.url)}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="w-[100%] md:min-w-[40%] md:w-1/2 ">
-            <div>
-              <img
-                src={mainImg}
-                alt="img"
-                className="object-cover w-full min-h-[80%] "
-              />
+                  className={`w-20 h-20 m-2 rounded-b-lg object-cover p-0.5 hidden md:block ${
+                    mainImg === imgs.url
+                      ? "border-2 border-black"
+                      : "border-gray-500"
+                  }`}
+                >
+                  <img
+                    src={imgs.url}
+                    alt={imgs.alt || `Thumbnail ${index}`}
+                    onClick={() => handelmainImage(imgs.url)}
+                     className="w-full h-full"
+                  />
+                </div>
+              ))}
             </div>
-          </div>
-          {/* mobile view */}
-          <div className="flex md:hidden mt-2 sm:mb-2 ">
-            {productDetails[0].images.map((imgs, index) => (
-              <div
-                className={`w-20 h-20 m-2 rounded-b-lg object-cover ${
-                  mainImg === imgs.url
-                    ? "border-2 border-black"
-                    : "border-gray-500"
-                }`}
-              >
-                <img
-                  key={index}
-                  src={imgs.url}
-                  alt={imgs.alt || `Thumnail ${index}`}
-                  onClick={() => handelmainImage(imgs.url)}
-                />
-              </div>
-            ))}
-          </div>
-          {/* right side */}
-          <div className="md:ml-7 mb-4">
-            <h1 className="text-2xl  mb-2 md:text-3xl font-semibold">
-              {productDetails[0].name}
-            </h1>
-            <p className="text-through text-gray-600 text-lg mb-1">
-              $
-              {productDetails[0].orignalPrice && productDetails[0].orignalPrice}
-            </p>
-            {/* <p className="text-gray-500 text-xl inline-block">
-                        {productDetails[0].price}
-                    </p> */}
-            <p className="text-gray-700 text-lg">
-              {productDetails[0].description}
-            </p>
-            <div>
-              <p className="mb-1.5 mt-1.5">Select Colors</p>
-              <div className="">
-                {productDetails[0].colors.map((col, index) => (
-                  <button
-                    key={index}
-                    onClick={()=>handelColorSelection(col)}
-                    className={`rounded-full h-6 w-6 m-2 border-2 ${col === selectedColor ? " border-black":"border-gray-50"}`}
-                    style={{ backgroundColor: col.toLowerCase() }}
-                  ></button>
-                ))}
-              </div>
-            </div>
-            {/* size choosing buttons */}
-            <div>
-              <p className="mb-2">Select Size</p>
+
+            {/* main image */}
+            <div className="w-[100%] md:min-w-[40%] md:w-1/2 ">
               <div>
-                {productDetails[0].material.map((size, index) => (
-                  <button
-                  onClick={()=>handelSizeSelection(size)}
-                    key={index}
-                    className={`border-2   rounded h-10 w-10 m-2 ${size === selectedSize ? " border-black text-white bg-black":"border-gray-200 bg-gray-200"} `}
-                  >
-                    {size}
-                  </button>
-                ))}
+                <img
+                  src={mainImg}
+                  alt="img"
+                  className="object-cover w-full min-h-[80%]"
+                />
               </div>
             </div>
-            {/* quantity page  */}
-            <div>
+
+            {/* mobile thumbnails */}
+            <div className="flex md:hidden mt-2 sm:mb-2 ">
+              {selectedProducts[0]?.images?.map((imgs, index) => (
+                <div
+                  key={index}
+                  className={`w-20 h-20 m-2 rounded-b-lg object-cover ${
+                    mainImg === imgs.url
+                      ? "border-2 border-black"
+                      : "border-gray-500"
+                  }`}
+                >
+                  <img
+                    src={imgs.url}
+                    alt={imgs.alt || `Thumbnail ${index}`}
+                    onClick={() => handelmainImage(imgs.url)}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* right side */}
+            <div className="md:ml-7 mb-4">
+              <h1 className="text-2xl mb-2 md:text-3xl font-semibold">
+                {selectedProducts[0].name}
+              </h1>
+              <p className="text-through text-gray-600 text-lg mb-1">
+                ${selectedProducts[0].price}
+              </p>
+
+              <p className="text-gray-700 text-lg">
+                {selectedProducts[0].description}
+              </p>
+
+              {/* colors */}
+              <div>
+                <p className="mb-1.5 mt-1.5">Select Colors</p>
+                <div>
+                  {selectedProducts[0].colors?.map((col, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handelColorSelection(col)}
+                      className={`rounded-full h-6 w-6 m-2 border-2 ${
+                        col === selectedColor
+                          ? "border-black"
+                          : "border-gray-50"
+                      }`}
+                      style={{ backgroundColor: col.toLowerCase() }}
+                    ></button>
+                  ))}
+                </div>
+              </div>
+
+              {/* sizes */}
+              <div>
+                <p className="mb-2">Select Size</p>
+                <div>
+                  {selectedProducts[0].size?.map((size, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handelSizeSelection(size)}
+                      className={`border-2 rounded h-10 w-10 m-2 ${
+                        size === selectedSize
+                          ? "border-black text-white bg-black"
+                          : "border-gray-200 bg-gray-200"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* quantity */}
+              <div>
               <p className="mb-2">Quantity -</p>
               <div>
                 <button
@@ -198,17 +206,23 @@ const handeladdToCart = ()=>{
                 </button>
               </div>
             </div>
-            {/* checkout btn */}
-            <div>
-              <button 
-              onClick={handeladdToCart}
-              disabled={disableButton}
-              className={`px-14 py-2 mt-1.5 border-2  text-white rounded ${disableButton?"bg-gray-600 cursor-not-allowed":"bg-black"}`}>
-                {disableButton?"Adding ...":"Add To Cart"}
-              </button>
+              {/* checkout btn */}
+              <div>
+                <button
+                  onClick={handeladdToCart}
+                  disabled={disableButton}
+                  className={`px-14 py-2 mt-1.5 border-2 text-white rounded ${
+                    disableButton
+                      ? "bg-gray-600 cursor-not-allowed"
+                      : "bg-black"
+                  }`}
+                >
+                  {disableButton ? "Adding ..." : "Add To Cart"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

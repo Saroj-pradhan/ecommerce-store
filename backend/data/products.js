@@ -18,11 +18,11 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=39",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114718/p_img52_qw3fmq.png",
         altText: "Classic Oxford Button-Down Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=40",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114718/p_img52_qw3fmq.png",
         altText: "Classic Oxford Button-Down Shirt Back View",
       },
     ],
@@ -46,11 +46,11 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=41",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114715/p_img48_m4ohni.png",
         altText: "Slim-Fit Stretch Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=42",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114715/p_img48_m4ohni.png",
         altText: "Slim-Fit Stretch Shirt Back View",
       },
     ],
@@ -74,11 +74,11 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=43",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114683/p_img14_v95myn.png",
         altText: "Casual Denim Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=44",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114683/p_img14_v95myn.png",
         altText: "Casual Denim Shirt Back View",
       },
     ],
@@ -102,11 +102,11 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=45",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114687/p_img18_c1zpud.png",
         altText: "Printed Resort Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=1",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114687/p_img19_q7ahxq.png",
         altText: "Printed Resort Shirt Back View",
       },
     ],
@@ -130,12 +130,16 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=47",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114673/p_img2_4_h5y7rm.png",
         altText: "Slim-Fit Easy-Iron Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=2",
-        altText: "Slim-Fit Easy-Iron Shirt Front View",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114671/p_img2_2_qxwwit.png",
+        altText: "Slim-Fit Easy-Iron Shirt Back View",
+      },
+      {
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114672/p_img2_3_lybt4k.png",
+        altText: "Slim-Fit Easy-Iron Shirt Back View",
       },
     ],
     rating: 5,
@@ -158,11 +162,11 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=3",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114699/p_img32_tyxipg.png",
         altText: "Polo T-Shirt Front View",
       },
       {
-        url: "https://picsum.photos/500/500?random=4",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114691/p_img24_n1inr6.png",
         altText: "Polo T-Shirt Back View",
       },
     ],
@@ -186,7 +190,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=5",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114708/p_img42_upjgqk.png",
         altText: "Oversized Graphic T-Shirt Front View",
       },
     ],
@@ -210,7 +214,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=6",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114711/p_img45_oooopm.png",
         altText: "Regular-Fit Henley Shirt Front View",
       },
     ],
@@ -234,7 +238,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=7",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114712/p_img46_mpy0mi.png",
         altText: "Long-Sleeve Thermal Tee Front View",
       },
     ],
@@ -258,7 +262,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=8",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114674/p_img4_idrol2.png",
         altText: "V-Neck Classic T-Shirt Front View",
       },
     ],
@@ -282,7 +286,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=9",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114677/p_img7_kxplog.png",
         altText: "Slim Fit Joggers Front View",
       },
     ],
@@ -306,7 +310,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=10",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114679/p_img10_yzibg7.png",
         altText: "Cargo Joggers Front View",
       },
     ],
@@ -330,7 +334,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=11",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114684/p_img15_blcfxu.png",
         altText: "Tapered Sweatpants Front View",
       },
     ],
@@ -354,7 +358,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=12",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114709/p_img43_yxsg2c.png",
         altText: "Denim Jeans Front View",
       },
     ],
@@ -378,7 +382,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=13",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114686/p_img17_b4akit.png",
         altText: "Chino Pants Front View",
       },
     ],
@@ -402,7 +406,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=14",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114677/p_img7_kxplog.png",
         altText: "Track Pants Front View",
       },
     ],
@@ -426,7 +430,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=15",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114686/p_img17_b4akit.png",
         altText: "Slim Fit Trousers Front View",
       },
     ],
@@ -450,7 +454,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=16",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114679/p_img10_yzibg7.png",
         altText: "Cargo Pants Front View",
       },
     ],
@@ -474,7 +478,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=17",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114709/p_img43_yxsg2c.png",
         altText: "Relaxed Fit Sweatpants Front View",
       },
     ],
@@ -498,7 +502,7 @@ const products = [
     gender: "Men",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=18",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114705/p_img39_sfavjh.png",
         altText: "Formal Dress Pants Front View",
       },
     ],
@@ -522,7 +526,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=19",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116047/71UHzx_7SKL._UY1000__hgfxfm.jpg",
         altText: "High-Waist Skinny Jeans",
       },
     ],
@@ -546,7 +550,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=20",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114688/p_img20_zy4uqe.png",
         altText: "Wide-Leg Trousers Front View",
       },
     ],
@@ -570,7 +574,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=21",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114715/p_img49_rbk4qa.png",
         altText: "Stretch Leggings Front View",
       },
     ],
@@ -594,7 +598,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=22",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116261/30335148UH_14_f_dwh9r5.jpg",
         altText: "Pleated Midi Skirt Front View",
       },
     ],
@@ -618,7 +622,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=23",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116265/BEYR-WP413_V1_sbvmwj.jpg",
         altText: "Flared Palazzo Pants Front View",
       },
     ],
@@ -642,7 +646,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=24",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116267/JF0141H_20_1_zqrcmv.jpg",
         altText: "High-Rise Joggers Front View",
       },
     ],
@@ -666,7 +670,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=25",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114690/p_img22_ndygrp.png",
         altText: "Paperbag Waist Shorts Front View",
       },
     ],
@@ -690,7 +694,11 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=26",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116423/urjds03022_roxy_w_bsbw_frt1_jv9kjh.jpg",
+        altText: "Stretch Denim Shorts Front View",
+      },
+      {
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116423/14467_30965-59123_jastgt.jpg",
         altText: "Stretch Denim Shorts Front View",
       },
     ],
@@ -714,7 +722,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=27",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116534/LPZ6-JEANBLU76_4_gpercr.jpg",
         altText: "Culottes Front View",
       },
     ],
@@ -738,7 +746,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=28",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114717/p_img50_pwk17a.png",
         altText: "Classic Pleated Trousers Front View",
       },
     ],
@@ -762,7 +770,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=29",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114704/p_img37_qafufr.png",
         altText: "Knitted Cropped Top",
       },
     ],
@@ -786,7 +794,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=30",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114669/p_img1_k4axte.png",
         altText: "Boho Floral Blouse",
       },
     ],
@@ -810,7 +818,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=31",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114689/p_img21_ydakr6.png",
         altText: "Casual T-Shirt",
       },
     ],
@@ -834,7 +842,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=32",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114700/p_img34_dpd8kz.png",
         altText: "Off-Shoulder Top",
       },
     ],
@@ -858,7 +866,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=33",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114702/p_img35_wk0snx.png",
         altText: "Lace-Trimmed Cami Top",
       },
     ],
@@ -882,7 +890,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=34",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114695/p_img29_ubudni.png",
         altText: "Graphic Print Tee",
       },
     ],
@@ -906,7 +914,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=35",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114717/p_img51_es0gfh.png",
         altText: "Ribbed Long-Sleeve Top",
       },
     ],
@@ -930,7 +938,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=36",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114695/p_img26_aly7fy.png",
         altText: "Ruffle-Sleeve Blouse",
       },
     ],
@@ -954,7 +962,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=37",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116904/OC_Womens_Merch_July_24-web-17_k6slbu.jpg",
         altText: "Classic Button-Up Shirt",
       },
     ],
@@ -978,13 +986,254 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=38",
+        url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116905/image_ts70ph.png",
         altText: "V-Neck Wrap Top",
       },
     ],
     rating: 4.7,
     numReviews: 22,
   },
+  // //kids
+  // {
+  //   name: "V-Neck Wrap Top",
+  //   description:
+  //     "A chic v-neck wrap top with a tie waist. Its elegant style makes it perfect for both casual and semi-formal occasions.",
+  //   price: 50,
+  //   discountPrice: 45,
+  //   countInStock: 30,
+  //   sku: "TW-K-001",
+  //   category: "Top Wear",
+  //   brand: "ChicWrap",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Red", "Black", "White"],
+  //   collections: "Evening Collection",
+  //   material: "Polyester",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114700/p_img34_dpd8kz.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.7,
+  //   numReviews: 22,
+  // },
+  // {
+  //   name: "Casual Polo Shirt",
+  //   description:
+  //     "A stylish polo shirt with a classic collar design. Great for school and outings.",
+  //   price: 40,
+  //   discountPrice: 35,
+  //   countInStock: 25,
+  //   sku: "TW-K-002",
+  //   category: "Top Wear",
+  //   brand: "MiniStyle",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Blue", "Green", "White"],
+  //   collections: "Daily Wear",
+  //   material: "Cotton",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114674/p_img4_idrol2.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.5,
+  //   numReviews: 18,
+  // },
+  // {
+  //   name: "Striped T-Shirt",
+  //   description:
+  //     "A soft cotton t-shirt with fun stripes, perfect for everyday play.",
+  //   price: 30,
+  //   discountPrice: 25,
+  //   countInStock: 40,
+  //   sku: "TW-K-003",
+  //   category: "Top Wear",
+  //   brand: "PlayMate",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Yellow", "Blue", "Green"],
+  //   collections: "Casual Collection",
+  //   material: "Cotton",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114679/p_img9_khdwk8.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.2,
+  //   numReviews: 11,
+  // },
+  // {
+  //   name: "Printed Hoodie Top",
+  //   description:
+  //     "A cozy printed hoodie made for comfort and style in cooler weather.",
+  //   price: 55,
+  //   discountPrice: 50,
+  //   countInStock: 35,
+  //   sku: "TW-K-004",
+  //   category: "Top Wear",
+  //   brand: "ComfyWear",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Gray", "Red", "Yellow"],
+  //   collections: "Winter Collection",
+  //   material: "Cotton Blend",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114687/p_img18_c1zpud.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.4,
+  //   numReviews: 12,
+  // },
+  // {
+  //   name: "Casual Joggers",
+  //   description:
+  //     "Soft and comfortable joggers with an elastic waistband. Great for active kids.",
+  //   price: 35,
+  //   discountPrice: 30,
+  //   countInStock: 45,
+  //   sku: "BW-K-005",
+  //   category: "Bottom Wear",
+  //   brand: "ActiveKids",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Black", "Navy", "Gray"],
+  //   collections: "Sports Collection",
+  //   material: "Cotton",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114684/p_img15_blcfxu.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.3,
+  //   numReviews: 10,
+  // },
+  // {
+  //   name: "Classic Jeans",
+  //   description:
+  //     "Durable denim jeans designed for everyday wear with a comfortable fit.",
+  //   price: 60,
+  //   discountPrice: 55,
+  //   countInStock: 20,
+  //   sku: "BW-K-006",
+  //   category: "Bottom Wear",
+  //   brand: "DenimKids",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Blue", "Dark Blue"],
+  //   collections: "Casual Collection",
+  //   material: "Denim",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756116267/JF0141H_20_1_zqrcmv.jpg",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.6,
+  //   numReviews: 16,
+  // },
+  // {
+  //   name: "Track Pants",
+  //   description:
+  //     "Lightweight track pants designed for sports and activities. Comfortable fit with drawstring.",
+  //   price: 38,
+  //   discountPrice: 34,
+  //   countInStock: 35,
+  //   sku: "BW-K-007",
+  //   category: "Bottom Wear",
+  //   brand: "Sportify",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Navy", "Gray"],
+  //   collections: "Active Collection",
+  //   material: "Polyester",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114691/p_img23_phvrii.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.1,
+  //   numReviews: 8,
+  // },
+  // {
+  //   name: "Cargo Shorts",
+  //   description:
+  //     "Casual cargo shorts with multiple pockets. Perfect for summer outings.",
+  //   price: 32,
+  //   discountPrice: 28,
+  //   countInStock: 28,
+  //   sku: "BW-K-008",
+  //   category: "Bottom Wear",
+  //   brand: "SummerVibes",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Khaki", "Green", "Navy"],
+  //   collections: "Summer Collection",
+  //   material: "Cotton",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114694/p_img25_tyw9ol.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.3,
+  //   numReviews: 14,
+  // },
+  // {
+  //   name: "Full-Sleeve Shirt",
+  //   description:
+  //     "A comfortable full-sleeve shirt with a smart casual look.",
+  //   price: 45,
+  //   discountPrice: 40,
+  //   countInStock: 22,
+  //   sku: "TW-K-009",
+  //   category: "Top Wear",
+  //   brand: "SmartKids",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["White", "Sky Blue"],
+  //   collections: "Casual Collection",
+  //   material: "Cotton",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "https://res.cloudinary.com/dddmddgzs/image/upload/v1756114695/p_img27_dvtzds.png",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.2,
+  //   numReviews: 9,
+  // },
+  // {
+  //   name: "Sweatpants",
+  //   description:
+  //     "Soft sweatpants with elastic cuffs, ideal for loungewear and playtime.",
+  //   price: 36,
+  //   discountPrice: 32,
+  //   countInStock: 40,
+  //   sku: "BW-K-010",
+  //   category: "Bottom Wear",
+  //   brand: "CozyFit",
+  //   sizes: ["S", "M", "L"],
+  //   colors: ["Gray", "Black"],
+  //   collections: "Casual Collection",
+  //   material: "Cotton Blend",
+  //   gender: "Kids",
+  //   images: [
+  //     {
+  //       url: "",
+  //       altText: "V-Neck Wrap Top",
+  //     },
+  //   ],
+  //   rating: 4.0,
+  //   numReviews: 7,
+  // },
 ];
 
 module.exports = products;

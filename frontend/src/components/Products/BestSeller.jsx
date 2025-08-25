@@ -1,29 +1,20 @@
 import { useEffect, useState } from "react";
-import {toast} from "sonner"
+import {toast} from "sonner";
+import axios from "axios";
 function BestSeller() {
-  const productDetails = [
-    {
-      _id: 1,
-      name: "Stylish jacket",
-      price: 1200,
-      orignalPrice: 1500,
-      description:
-        "veritatis sarok pradhan buhho parila na nai so thanks  praesentium quia officia iste ipsa jdfnjdsf sjdfnsjdf sjdfnsdjf ",
-      brand: "Killer",
-      material: ["S", "M", "L", "XL"],
-      colors: ["red", "blue", "green"],
-      images: [
-        {
-          url: "https://picsum.photos/500/500?random=8",
-          altText: "Stylish jacket",
-        },
-        {
-          url: "https://picsum.photos/500/500?random=9",
-          altText: "Stylish jacket ",
-        },
-      ],
-    },
-  ];
+  const [productDetails,setproductDetails] = useState([]);
+   useEffect(()=>{
+    const fetchBestSeller = async ()=>{
+    try{
+   const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/best-seller`);
+   console.log(data);
+   setproductDetails((prev)=>[...prev,data]);
+    }catch(error){
+    console.log(error);
+    }
+    }
+    fetchBestSeller();
+  },[]);
 
   const [mainImg, setmainImg] = useState(null);
     const [selectedSize, setselectedSize] = useState(null);
@@ -76,11 +67,11 @@ const handeladdToCart = ()=>{
     console.log("under con");
     
     if (productDetails[0]?.images[0].url) {
-      setmainImg(productDetails[0].images[0]?.url);
-      console.log(productDetails[0].images[0]?.url);
+      setmainImg(productDetails[0]?.images[0]?.url);
+      console.log(productDetails[0]?.images[0]?.url);
     }
     console.log("under completed");
-  }, []);
+  }, [productDetails]);
   return (
     <div className="p-1 md:p-6 ">
       <div className="max-w-6xl ">
@@ -93,10 +84,10 @@ const handeladdToCart = ()=>{
             and unbeatable prices meet all in one destination.
           </p>
         </div>
-        <div className="mx-auto bg-white p-4 md:p-6 round-lg flex flex-col md:flex-row ">
+        {productDetails.length>0 && (<div className="mx-auto bg-white p-4 md:p-6 round-lg flex flex-col md:flex-row ">
           {/* left side */}
-          <div>
-            {productDetails[0].images.map((imgs, index) => (
+         <div>
+            {productDetails[0]?.images?.map((imgs, index) => (
               <div
                 className={`w-20 h-20 m-2 rounded-b-lg object-cover p-0.5 hidden md:block ${
                   mainImg === imgs.url
@@ -109,6 +100,7 @@ const handeladdToCart = ()=>{
                   src={imgs.url}
                   alt={imgs.alt || `Thumnail ${index}`}
                   onClick={() => handelmainImage(imgs.url)}
+                  className="w-full h-full "
                 />
               </div>
             ))}
@@ -124,7 +116,7 @@ const handeladdToCart = ()=>{
           </div>
           {/* mobile view */}
           <div className="flex md:hidden mt-2 sm:mb-2 ">
-            {productDetails[0].images.map((imgs, index) => (
+            {productDetails[0]?.images?.map((imgs, index) => (
               <div
                 className={`w-20 h-20 m-2 rounded-b-lg object-cover ${
                   mainImg === imgs.url
@@ -137,6 +129,7 @@ const handeladdToCart = ()=>{
                   src={imgs.url}
                   alt={imgs.alt || `Thumnail ${index}`}
                   onClick={() => handelmainImage(imgs.url)}
+                  className="w-full h-full"
                 />
               </div>
             ))}
@@ -144,11 +137,11 @@ const handeladdToCart = ()=>{
           {/* right side */}
           <div className="md:ml-7 mb-4">
             <h1 className="text-2xl  mb-2 md:text-3xl font-semibold">
-              {productDetails[0].name}
+              {productDetails[0]?.name}
             </h1>
             <p className="text-through text-gray-600 text-lg mb-1">
               $
-              {productDetails[0].orignalPrice && productDetails[0].orignalPrice}
+              {productDetails[0]?.price && productDetails[0]?.price}
             </p>
             {/* <p className="text-gray-500 text-xl inline-block">
                         {productDetails[0].price}
@@ -163,7 +156,7 @@ const handeladdToCart = ()=>{
                   <button
                     key={index}
                     onClick={()=>handelColorSelection(col)}
-                    className={`rounded-full h-6 w-6 m-2 border-2 ${col === selectedColor ? " border-black":"border-gray-50"}`}
+                    className={`rounded-full h-6 w-6 m-2  border-2 ${col === selectedColor ? " border-black":"border-gray-200"}`}
                     style={{ backgroundColor: col.toLowerCase() }}
                   ></button>
                 ))}
@@ -173,7 +166,7 @@ const handeladdToCart = ()=>{
             <div>
               <p className="mb-2">Select Size</p>
               <div>
-                {productDetails[0].material.map((size, index) => (
+                {productDetails[0]?.size?.map((size, index) => (
                   <button
                   onClick={()=>handelSizeSelection(size)}
                     key={index}
@@ -213,7 +206,7 @@ const handeladdToCart = ()=>{
               </button>
             </div>
           </div>
-        </div>
+        </div>)}
       </div>
     </div>
   );

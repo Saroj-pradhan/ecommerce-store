@@ -36,7 +36,7 @@ function Signup() {
             
           </div>
           <div className='w-[100%] md:w-[50%] h-[450px] px-3 '>
-            <img className='h-full w-full object-cover' src="https://picsum.photos/500/500?random=8" alt="img"  />
+            <img className='h-full w-full object-cover object-center' src="https://res.cloudinary.com/dddmddgzs/image/upload/v1756133366/1750257754_img_1_hg4bhz.webp" alt="img"  />
           </div>
          </div>
     </div>

@@ -203,6 +203,26 @@ router.get("/new-arrival",async (req,res)=>{
     res.status(500).send("Server Error");
     }
 })
+//top-selling
+// Top Selling (based on rating)
+router.get("/top-selling", async (req, res) => {
+  try {
+    const topSelling = await Product.find()
+      .sort({ rating: -1 }) // highest rating first
+      .skip(1)
+      .limit(10);
+
+    if (!topSelling || topSelling.length === 0) {
+      return res.status(404).send("No Top Selling Products Found");
+    }
+
+    res.status(200).json(topSelling);
+  } catch (error) {
+    console.log("Error", error);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 // get one single product by id 
 router.get("/:id",async (req,res)=>{

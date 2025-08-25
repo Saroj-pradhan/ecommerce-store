@@ -1,7 +1,22 @@
-import React from "react";
+import React ,{useState,useEffect} from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios"
 function TopSelling() {
-  const newArrival = [
+  const [topProduct,settopProduct] = useState([]);
+    useEffect(()=>{
+      const fetchTopSelling = async ()=>{
+      try{
+     const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/top-selling`);
+     console.log(data);
+     settopProduct(data);
+      }catch(error){
+      console.log(error);
+
+      }
+      }
+      fetchTopSelling();
+    },[]);
+  const newArrivals = [
     {
       _id: 1,
       name: "Stylish jacket",
@@ -59,15 +74,15 @@ function TopSelling() {
           and unbeatable prices meet all in one destination.
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  mt-4 gap-4 gap-y-6">
-        {newArrival.map((Product) => (
-          <NavLink to={`products/${Product._id}`}>
+      { topProduct.length>0 ?(<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  mt-4 gap-4 gap-y-6">
+        {topProduct.map((Product) => (
+          <NavLink to={`products/${Product._id}`} key={Product._id}>
             <div className="overflow-hidden">
               <img
                 className="h-[270px] w-full object-cover hover:scale-105 transition-all"
                 draggable="false"
-                src={Product.images.url}
-                alt={Product.images.altText}
+                src={Product.images[0].url}
+                alt={Product.images[0].altText}
                 srcset=""
               />
             </div>
@@ -75,7 +90,9 @@ function TopSelling() {
             <p>₹{Product.price}</p>
           </NavLink>
         ))}
-      </div>
+      </div>):
+      <p className="text-2xl text-gray-200 text-center">Loading Top Selling Data ...</p>
+      }
     </div>
   );
 }

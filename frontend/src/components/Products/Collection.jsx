@@ -7,8 +7,8 @@ function Collection() {
       <div className="w-full flex flex-col md:flex-row flex-wrap gap-4 ">
         <div className="relative flex-1 ">
           <img
-            className="h-[500px] object-cover w-full"
-            src={men_img}
+            className="h-[500px] object-cover w-full object-top"
+            src="https://res.cloudinary.com/dddmddgzs/image/upload/v1756130833/1756130654_img_0_tqh4r7.webp"
             alt="men imgs"
             
           />
@@ -24,8 +24,8 @@ function Collection() {
         </div>
         <div className="relative flex-1">
           <img
-            className="h-[500px] object-cover w-full"
-            src={women_img}
+            className="h-[500px] object-cover object-top w-full"
+            src="https://res.cloudinary.com/dddmddgzs/image/upload/v1756131830/1753791196_img_0_gtsawn.webp"
             alt=""
             
           />
