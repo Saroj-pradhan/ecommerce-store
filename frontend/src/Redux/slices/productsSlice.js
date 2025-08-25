@@ -60,7 +60,7 @@ try {
     );
     return response.data; 
 } catch (error) {
-    return rejectWithValue(error?.data || "failed to fetch product by id") ;
+    return rejectWithValue(error?.data || "failed to update product") ;
 }
 }) 
 
