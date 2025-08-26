@@ -5,20 +5,20 @@ function FilterSidebar() {
   const [searchParams, setsearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [filters, setfilters] = useState({
-    categories: [],
-    genders: [],
-    materials: [],
-    brands: [],
+    category: [],
+    gender: [],
+    material: [],
+    brand: [],
     size: [],
     minPrice: 0,
     maxPrice: 100,
   });
   const [priceRange, setpriceRange] = useState([0, 100]);
 
-  const categories = ["top wear", "buttom wear"];
-  const genders = ["Man", "Women", "kids"];
+  const category = ["Top Wear", "Bottom Wear"];
+  const gender = ["Men", "Women", "kids"];
   const size = ["xs", "s", "m", "l", "xl", "xxl"];
-  const materials = [
+  const material = [
     "cotton",
     "silk",
     "wool",
@@ -29,17 +29,17 @@ function FilterSidebar() {
     "viscose",
   ];
 
-  const brands = ["Nike", "Adidas", "Puma", "Levi's", "Zara", "H&M", "Uniqlo"];
+  const brand = ["Nike", "Adidas", "Puma", "Levi's", "Zara", "H&M", "Uniqlo"];
 
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);
     console.log(searchParams,"ser")
     console.log(filters)
     setfilters({
-      categories: params.categories ?params.categories.split(","): [],
-      genders: params.genders?params.genders.split(",") : [],
-      materials: params.materials ? params.materials.split(",") : [],
-      brands: params.brands ? params.brands.split(",") : [],
+      category: params.category ?params.category.split(","): [],
+      gender: params.gender?params.gender.split(",") : [],
+      material: params.material ? params.material.split(",") : [],
+      brand: params.brand ? params.brand.split(",") : [],
       size: params.size ? params.size.split(",") : [],
       minPrice: Number(params.minPrice) || 0,
       maxPrice: Number(params.maxPrice) || 100,
@@ -113,32 +113,32 @@ const newPrice = parseInt(e.target.value);
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">categories</h3>
 
-        {categories.map((category) => (
+        {category.map((categorys) => (
           <label className="uppercase">
             <input
-              name="categories"
+              name="category"
               onChange={handelfilter}
               type="checkbox"
-              checked={filters.categories.includes(category)}
-              value={category}
+              checked={filters.category.includes(categorys)}
+              value={categorys}
             />{" "}
-            {category}
+            {categorys}
           </label>
         ))}
       </div>
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">gender</h3>
-        {genders.map((gender) => (
+        {gender.map((genders) => (
           <label className="">
             <input
-              name="genders"
+              name="gender"
               onChange={handelfilter}
-              checked={filters.genders.includes(gender)}
+              checked={filters.gender.includes(genders)}
               type="checkbox"
-              value={gender}
+              value={genders}
             />{" "}
-            {gender}
+            {genders}
           </label>
         ))}
       </div>
@@ -162,32 +162,32 @@ const newPrice = parseInt(e.target.value);
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">Material</h3>
-        {materials.map((material) => (
+        {material.map((materials) => (
           <label className="uppercase ">
             <input
-              name="materials"
+              name="material"
               onChange={handelfilter}
-               checked={filters.materials.includes(material)}
+               checked={filters.material.includes(materials)}
               type="checkbox"
-              value={material}
+              value={materials}
             />{" "}
-            {material}
+            {materials}
           </label>
         ))}
       </div>
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
         <h3 className="text-s uppercase">Brand</h3>
-        {brands.map((brand) => (
+        {brand.map((brands) => (
           <label className="uppercase ">
             <input
-              name="brands"
+              name="brand"
               onChange={handelfilter}
-               checked={filters.brands.includes(brand)}
+               checked={filters.brand.includes(brands)}
               type="checkbox"
-              value={brand}
+              value={brands}
             />{" "}
-            {brand}
+            {brands}
           </label>
         ))}
       </div>

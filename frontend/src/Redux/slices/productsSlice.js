@@ -1,8 +1,9 @@
 import axios from "axios";
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchProductsByfilter = createAsyncThunk("/products/filter" , 
+   
     async ({
-    Collection,
+    collection,
     sortby,
     gender,
     material,
@@ -13,8 +14,9 @@ export const fetchProductsByfilter = createAsyncThunk("/products/filter" ,
     category
     },{rejectWithValue})=>{
     try {
-        const query = URLSearchParams();
-      if(Collection) query.append("collection",Collection);
+         console.log("reach344");
+        const query =new URLSearchParams();
+    //   if(collection) query.append("collection",collection);
       if (sortby) query.append("sortby", sortby);
       if (gender) query.append("gender", gender);
       if (material) query.append("material", material);
@@ -24,7 +26,8 @@ export const fetchProductsByfilter = createAsyncThunk("/products/filter" ,
       if (maxPrice) query.append("maxPrice", maxPrice);
       if (category) query.append("category", category);
 
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products/filter/${query.toString()}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/filter?${query.toString()}`);
+      console.log(response.data,"data");
       return response.data;
     } catch (error) {
               return rejectWithValue(
@@ -108,10 +111,11 @@ const ProductsSlice = createSlice({
       })
        .addCase(fetchProductsByfilter.fulfilled,(state,action)=>{
       state.loading=false,
+      console.log("chek",action.payload)
       state.products = Array.isArray(action.payload)? action.payload:[],
       state.error=null
       })
-      .addCase(fetchProductsByfilter.rejected,(state)=>{
+      .addCase(fetchProductsByfilter.rejected,(state,action)=>{
       state.loading=false,
       state.error=action.error?.message || "failed fetch to filter the Product"
       })
@@ -122,11 +126,11 @@ const ProductsSlice = createSlice({
       })
        .addCase(fetchproductById.fulfilled,(state,action)=>{
       state.loading=false;
-       console.log("reached",action.payload)
+       
       state.selectedProducts = action.payload? [action.payload]:[];
       state.error=null;
       })
-      .addCase(fetchproductById.rejected,(state)=>{
+      .addCase(fetchproductById.rejected,(state,action)=>{
       state.loading=false;
       state.error=action.error?.message || "failed to fetch the Product By Id";
       })
@@ -142,7 +146,7 @@ const ProductsSlice = createSlice({
       if(index !== -1) state.products[index] = updatedProducts;
       state.error=null;
       })
-      .addCase(UpdateProduct.rejected,(state)=>{
+      .addCase(UpdateProduct.rejected,(state,action)=>{
       state.loading=false,
       state.error=action.error?.message || "failed to fetch the Updated Product"
       })
@@ -156,7 +160,7 @@ const ProductsSlice = createSlice({
        state.similarProducts = Array.isArray(action.payload)?action.payload:[];
      
        })
-      .addCase(fetchSimilarProduct.rejected,(state)=>{
+      .addCase(fetchSimilarProduct.rejected,(state,action)=>{
       state.loading=false,
       state.error=action.error?.message || "failed to fetch the similar Product"
       })

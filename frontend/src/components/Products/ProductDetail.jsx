@@ -8,19 +8,13 @@ function ProductDetail() {
     const dispatch = useDispatch();
    
  const { id } = useParams();
-  console.log("ifjjjj",id);
-    const [productDetail,setproductDetails] = useState([]);
     const { selectedProducts, loading, error } = useSelector((state) => state.products);
    useEffect(() => {
     if (id) {
       dispatch(fetchproductById(id));
     }
   }, [id, dispatch]);
-  //    if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
-  // if (!product) return <p>No product found</p>;
-  
-
+   
     const [mainImg, setmainImg] = useState(null);
     const [selectedSize, setselectedSize] = useState(null);
     const [selectedColor, setselectedColor] = useState(null);
@@ -69,15 +63,15 @@ const handeladdToCart = ()=>{
  
   }
   
-  useEffect(() => {
-    console.log("under con");
-    
+  useEffect(() => {  
     if (selectedProducts[0]?.images[0].url) {
       setmainImg(selectedProducts[0]?.images[0]?.url);
       console.log(selectedProducts[0]?.images[0]?.url);
     }
-    console.log("under completed");
-  }, []);
+  }, [selectedProducts]);
+    if (loading) return <p>Loading...</p>;
+   if (error) return <p>Error: {error}</p>;
+   if (!selectedProducts) return <p>No product found</p>;
   return (
    <div className="p-1 ">
       <div className="max-w-6xl ">

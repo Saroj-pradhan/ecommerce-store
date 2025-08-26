@@ -4,7 +4,23 @@ import FilteredProduct from "../components/Products/FilteredProduct";
 import { useState, useEffect, useRef } from "react";
 import { FaFilter } from "react-icons/fa";
 import SortOptions from "../components/Products/SortOptions";
+import {fetchProductsByfilter} from "../Redux/slices/productsSlice";
+import {useDispatch,useSelector} from "react-redux";
+import { useSearchParams , useParams } from "react-router-dom";
 function CollectionPage() {
+
+  const {collection} = useParams();
+  const [params] = useSearchParams();
+  console.log(collection)
+  console.log(params,"parm");
+  const searchQuery = Object.fromEntries([...params])
+    console.log(searchQuery,"parm");
+  const{products,loading,error} = useSelector((state)=>state.products);
+  const dispatch = useDispatch();
+    useEffect(()=>{
+   dispatch(fetchProductsByfilter({collection, ...searchQuery}));
+    },[dispatch,collection,params])
+ 
   const [product, setProduct] = useState([]);
   const [isSidebar, setIsSidebar] = useState(false);
   const sidebarRef = useRef();
@@ -25,57 +41,6 @@ function CollectionPage() {
        document.removeEventListener("mousedown",handelOutsideclick);
     }
   },[isSidebar])
-
-  useEffect(() => {
-    const newArrival = [
-      {
-        _id: 1,
-        name: "Stylish jacket",
-        price: 1200,
-        images: {
-          url: "https://picsum.photos/500/500?random=7",
-          altText: "Stylish jacket",
-        },
-      },
-      {
-        _id: 2,
-        name: "Stylish Shoes",
-        price: 1893,
-        images: {
-          url: "https://picsum.photos/500/500?random=2",
-          altText: "Stylish shoes",
-        },
-      },
-      {
-        _id: 3,
-        name: "Half Pant",
-        price: 650,
-        images: {
-          url: "https://picsum.photos/500/500?random=3",
-          altText: "Half Pant",
-        },
-      },
-      {
-        _id: 4,
-        name: "Stylish t-shirt",
-        price: 900,
-        images: {
-          url: "https://picsum.photos/500/500?random=4",
-          altText: "Stylish t-shirt",
-        },
-      },
-      {
-        _id: 5,
-        name: "Jeans Pants",
-        price: 990,
-        images: {
-          url: "https://picsum.photos/500/500",
-          altText: "Jeans Pants",
-        },
-      },
-    ];
-    setProduct(newArrival);
-  }, []);
 
   return (
     <div className="flex flex-col sm:flex-row mt-8">
@@ -103,7 +68,7 @@ function CollectionPage() {
       <div>
         < SortOptions />
       </div>
-        <FilteredProduct products={product}/>
+        <FilteredProduct products={products}/>
       </div>
     </div>
   );
