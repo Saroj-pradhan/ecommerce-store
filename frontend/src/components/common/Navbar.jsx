@@ -21,10 +21,10 @@ function Navbar() {
       <NavLink to="/" className={"text-2xl font-bold"}>SnapCart</NavLink>
      </div>
      <div className='gap-1.5 hidden sm:block'>
-         <NavLink to="/collections/Men?gender=Men" className={"px-2"}>MEN</NavLink>
-         <NavLink to="/collections/Women?gender=Women" className={"px-2"}>WOMEN</NavLink>
-         <NavLink to="/collections/TopWear?category=Top+Wear" className={"px-2"}>TOP-WEAR</NavLink>
-         <NavLink to="/collections/ButtomWear?category=Bottom+Wear" className={"px-2"}>BOTTOM-WEAR</NavLink>
+         <NavLink to="/collections/all?gender=Men" className={"px-2"}>MEN</NavLink>
+         <NavLink to="/collections/all?gender=Women" className={"px-2"}>WOMEN</NavLink>
+         <NavLink to="/collections/all?category=Top+Wear" className={"px-2"}>TOP-WEAR</NavLink>
+         <NavLink to="/collections/all?category=Bottom+Wear" className={"px-2"}>BOTTOM-WEAR</NavLink>
      </div>
      <div className='flex items-center'>
       <NavLink to="/admin" className={"text-xs px-1 sm:px-2 rounded bg-black text-white"}>Admin</NavLink>

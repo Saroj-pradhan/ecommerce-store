@@ -86,7 +86,7 @@ router.get("/filter",async (req,res)=>{
 try {
      const{sortby,collection,color ,category,gender,material,brand,size,minPrice,maxPrice,search , limit} = req.query;
       let filter = {};
-
+console.log(size,"size");
     // Handle array type queries (comma-separated string → array)
    if (collection && collection.toLowerCase() !== "all") {
       filter.collection = collection; // single value
@@ -101,7 +101,7 @@ try {
     }
 
     if (size) {
-      filter.size = { $in: size.split(",") };
+      filter.size = { $all: size.split(",") };
     }
 
     if (brand) {

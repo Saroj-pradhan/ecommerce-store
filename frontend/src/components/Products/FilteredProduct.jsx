@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  useSearchParams ,NavLink} from 'react-router-dom'
-function FilteredProduct({products}) {
+function FilteredProduct({products , loading , error}) {
     const [searchParams,setsearchParams] = useSearchParams();
     const [filters , setfilters] = useState({
         category:"",
@@ -12,7 +12,8 @@ function FilteredProduct({products}) {
         maxPrice:133
     });
     const [priceRange , setpriceRange] = useState([0,100]);
-     
+     if(loading) return <p className='text-2xl text-gray-300'>Loading ...</p>
+     if(error) return <p className='text-2xl text-gray-300'>have some Error in Loading ...</p>
   return (
     <div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4  mt-4 gap-4 gap-y-6">

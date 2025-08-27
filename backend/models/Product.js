@@ -12,7 +12,7 @@ size:{type:[String],required:true},
 colors:{type:[String],required:true},
 collections:{type:String , required:true},
 material:{type:String },
-gender:{type:String , enum:["Men","Women","Unisex"]},
+gender:{type:String , enum:["Men","Women","kids"]},
 images:[{
     url:{type:String,required:true},
     altText:{type:String ,default:"Product image"}

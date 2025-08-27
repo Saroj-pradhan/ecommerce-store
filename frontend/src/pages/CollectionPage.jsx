@@ -11,7 +11,7 @@ function CollectionPage() {
 
   const {collection} = useParams();
   const [params] = useSearchParams();
-  console.log(collection)
+  console.log(collection);
   console.log(params,"parm");
   const searchQuery = Object.fromEntries([...params])
     console.log(searchQuery,"parm");
@@ -20,8 +20,7 @@ function CollectionPage() {
     useEffect(()=>{
    dispatch(fetchProductsByfilter({collection, ...searchQuery}));
     },[dispatch,collection,params])
- 
-  const [product, setProduct] = useState([]);
+
   const [isSidebar, setIsSidebar] = useState(false);
   const sidebarRef = useRef();
 
@@ -56,7 +55,7 @@ function CollectionPage() {
       <div
         ref={sidebarRef}
         className={`
-          fixed sm:static inset-y-0 left-0 z-50 w-1/2 md:w-1/5 bg-white shadow-md transition-transform duration-300 ease-in-out
+          fixed sm:static inset-y-0 mt-20 sm:m-0 left-0 z-50 w-1/2 md:w-1/5 bg-white shadow-md transition-transform duration-300 ease-in-out
           ${isSidebar ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}
         `}
       >
@@ -68,7 +67,7 @@ function CollectionPage() {
       <div>
         < SortOptions />
       </div>
-        <FilteredProduct products={products}/>
+        <FilteredProduct products={products} loading={loading} error={error}/>
       </div>
     </div>
   );

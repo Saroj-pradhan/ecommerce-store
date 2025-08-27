@@ -14,9 +14,9 @@ export const fetchProductsByfilter = createAsyncThunk("/products/filter" ,
     category
     },{rejectWithValue})=>{
     try {
-         console.log("reach344");
+         console.log(size , "size");
         const query =new URLSearchParams();
-    //   if(collection) query.append("collection",collection);
+      if(collection) query.append("collection",collection);
       if (sortby) query.append("sortby", sortby);
       if (gender) query.append("gender", gender);
       if (material) query.append("material", material);

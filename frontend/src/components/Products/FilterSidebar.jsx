@@ -16,24 +16,50 @@ function FilterSidebar() {
   const [priceRange, setpriceRange] = useState([0, 100]);
 
   const category = ["Top Wear", "Bottom Wear"];
-  const gender = ["Men", "Women", "kids"];
-  const size = ["xs", "s", "m", "l", "xl", "xxl"];
+  const gender = ["Men", "Women"];
+  const size = ["XS", "S", "M", "L", "XL", "XXL"];
   const material = [
-    "cotton",
-    "silk",
-    "wool",
-    "linen",
-    "polyester",
-    "nylon",
-    "lycra",
-    "viscose",
+   "Cotton",
+  "Cotton Blend",
+  "Denim",
+  "Viscose",
+  "Fleece",
+  "Polyester",
+  "Linen Blend"
   ];
 
-  const brand = ["Nike", "Adidas", "Puma", "Levi's", "Zara", "H&M", "Uniqlo"];
+  const brand = [
+"Urban Threads",
+  "Modern Fit",
+  "Street Style",
+  "Beach Breeze",
+  "Urban Chic",
+  "Polo Classics",
+  "Street Vibes",
+  "Heritage Wear",
+  "Winter Basics",
+  "Everyday Comfort",
+  "ActiveWear",
+  "UrbanStyle",
+  "ChillZone",
+  "DenimCo",
+  "CasualLook",
+  "SportX",
+  "ExecutiveStyle",
+  "StreetWear",
+  "LoungeWear",
+  "ElegantStyle",
+  "DenimStyle",
+  "ElegantWear",
+  "ComfyFit",
+  "ChicStyle",
+  "BreezyVibes",
+  "SunnyStyle"
+  ];
 
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);
-    console.log(searchParams,"ser")
+    console.log(searchParams,"ser");
     console.log(filters)
     setfilters({
       category: params.category ?params.category.split(","): [],
@@ -55,10 +81,19 @@ function FilterSidebar() {
       if (checked) {
         newfilters[name] = [...(newfilters[name] || []), value];
       } else {
-        newfilters[name] = newfilters[name].filter((item) => item !== value);
+        newfilters[name] = newfilters[name].filter((item) => item !== value);        
       }
+      if ( name === "category" || name ==="gender" ) {
+    if (checked) {
+      // Only allow one category at a time
+      newfilters[name] = value;
+    } else {
+      newfilters[name] = ""; // unselect
+    }
+  }
     } else {
       newfilters[name] = value;
+      
     }
     setfilters(newfilters);
     updateUrlParams(newfilters);
@@ -77,7 +112,6 @@ function FilterSidebar() {
   };
 
   const handelpriceChange = (e)=>{
-    console.log("hhhhh",e.target.value)
 const newPrice = parseInt(e.target.value);
   setpriceRange([0,newPrice]);
   const newfilter = {...filters,minPrice:0,maxPrice:newPrice};
@@ -85,13 +119,13 @@ const newPrice = parseInt(e.target.value);
   updateUrlParams(newfilter);
   }
   return (
-    <div className=" w-full h-full flex flex-col p-1 sm:p-0">
+    <div className=" w-full h-full flex flex-col p-1 sm:p-0 overflow-y-scroll ">
       <div className="flex  items-center  text-xl pt-5 sm:pt-0.5 ">
         <FaFilter />
         <p className="uppercase ">Filters</p>
       </div>
 
-      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
+      <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200  ">
         <h3 className="text-s uppercase">prices</h3>
 
         <input
@@ -111,7 +145,7 @@ const newPrice = parseInt(e.target.value);
       </div>
 
       <div className="mt-5 flex flex-col p-4 space-y-1 border-2 border-gray-200 ">
-        <h3 className="text-s uppercase">categories</h3>
+        <h3 className="text-s uppercase">category</h3>
 
         {category.map((categorys) => (
           <label className="uppercase">

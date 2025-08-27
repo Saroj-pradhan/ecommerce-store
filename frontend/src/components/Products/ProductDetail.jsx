@@ -116,7 +116,7 @@ const handeladdToCart = ()=>{
                   key={index}
                   className={`w-20 h-20 m-2 rounded-b-lg object-cover ${
                     mainImg === imgs.url
-                      ? "border-2 border-black"
+                      ? "border-2 border-gray-600"
                       : "border-gray-500"
                   }`}
                 >
@@ -124,6 +124,7 @@ const handeladdToCart = ()=>{
                     src={imgs.url}
                     alt={imgs.alt || `Thumbnail ${index}`}
                     onClick={() => handelmainImage(imgs.url)}
+                      className="w-full h-full"
                   />
                 </div>
               ))}
