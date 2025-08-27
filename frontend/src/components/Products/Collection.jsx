@@ -15,7 +15,7 @@ function Collection() {
           <div className="bg-white w-[260px] h-[100px] absolute left-6 bottom-8 bg-opacity-9 p-4">
             <h2 className="text-2xl font-bold">Men's Collection</h2>
             <Link
-              to="collections/all?gender=men"
+              to="collections/all?gender=Men"
               className="text-gray-900 underline"
             >
               Shop Now{" "}
@@ -32,7 +32,7 @@ function Collection() {
           <div className="bg-white w-[270px] h-[100px] absolute left-6 bottom-8 bg-opacity-9 p-4">
             <h2 className="text-2xl font-bold">Women's Collection</h2>
             <Link
-              to="collections/all?gender=women"
+              to="collections/all?gender=Women"
               className="text-gray-900 underline"
             >
               Shop Now{" "}

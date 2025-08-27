@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import {toast} from "sonner";
 import { Navigate, useNavigate,useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
-import {fetchproductById} from "../../Redux/slices/productsSlice"
+import {fetchproductById} from "../../Redux/slices/productsSlice";
+import {AddToCart} from "../../Redux/slices/cartSlice"
 function ProductDetail() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
    
  const { id } = useParams();
     const { selectedProducts, loading, error } = useSelector((state) => state.products);
+       const { carts, loading: cartLoading, error: cartError } = useSelector((state)=> state.cart);
    useEffect(() => {
     if (id) {
       dispatch(fetchproductById(id));
@@ -41,7 +43,7 @@ setselectedColor(col);
     };
   }
 // handel addtocart function 
-const handeladdToCart = ()=>{
+const handeladdToCart = async ()=>{
   if(!selectedSize){
     toast.error("please select size" , {
       duration:1000
@@ -54,19 +56,33 @@ const handeladdToCart = ()=>{
     });
     return;
   }
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const cartDetails = {
+    guestId:localStorage.getItem("guestId"),
+    userId:userInfo._id,
+    productId:id,
+    quantity,
+    size:selectedSize,
+    color:selectedColor
+  }
   setdisableButton(true);
-   toast.success("Product Added to cart",{duration:1000});
-  setTimeout(()=>{
+try {
+const ans = await dispatch(AddToCart(cartDetails)).unwrap();
+  console.log(ans,"ans")
+    toast.success("Product Added to cart");
+    navigate("/checkout")
+  } catch (error) {
+    toast.error(error?.data || 'failed to add to cart');
+  }finally{
     setdisableButton(false);
-    navigate("/checkout");
-  },500)
+  }
+ 
  
   }
   
   useEffect(() => {  
     if (selectedProducts[0]?.images[0].url) {
       setmainImg(selectedProducts[0]?.images[0]?.url);
-      console.log(selectedProducts[0]?.images[0]?.url);
     }
   }, [selectedProducts]);
     if (loading) return <p>Loading...</p>;

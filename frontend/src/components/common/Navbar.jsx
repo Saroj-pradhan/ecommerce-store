@@ -47,10 +47,10 @@ function Navbar() {
         <h2 className='text-2xl'>Menu</h2>
        
     <nav className='space-y-3.5 mt-1.5'>
-   <NavLink onClick={handelnavToggle} to="#" className={"block to-gray-600 hover:text-black"}>Men</NavLink>
-   <NavLink onClick={handelnavToggle} to="#" className={"block to-gray-600 hover:text-black"}>Women</NavLink>
-   <NavLink onClick={handelnavToggle} to="#" className={"block to-gray-600 hover:text-black"}>Top Wear</NavLink>
-   <NavLink onClick={handelnavToggle} to="#" className={"block to-gray-600 hover:text-black"}>Bottom Wear</NavLink>
+   <NavLink onClick={handelnavToggle} to="/collections/all?gender=Men" className={"block to-gray-600 hover:text-black"}>Men</NavLink>
+   <NavLink onClick={handelnavToggle} to="/collections/all?gender=Women" className={"block to-gray-600 hover:text-black"}>Women</NavLink>
+   <NavLink onClick={handelnavToggle} to="/collections/all?category=Top+Wear" className={"block to-gray-600 hover:text-black"}>Top Wear</NavLink>
+   <NavLink onClick={handelnavToggle} to="/collections/all?category=Bottom+Wear" className={"block to-gray-600 hover:text-black"}>Bottom Wear</NavLink>
     </nav>
         
       </div>

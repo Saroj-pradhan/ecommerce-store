@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import {toast} from "sonner";
 import axios from "axios";
+import { AddToCart } from "../../Redux/slices/cartSlice";
+import { useSelector,useDispatch } from "react-redux";
 function BestSeller() {
+  const dispatch = useDispatch();
+  // const {loading , error} = useSelector((state)=>state.cart); 
   const [productDetails,setproductDetails] = useState([]);
    useEffect(()=>{
     const fetchBestSeller = async ()=>{
     try{
    const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/best-seller`);
-   console.log(data);
+ 
    setproductDetails((prev)=>[...prev,data]);
     }catch(error){
     console.log(error);
@@ -42,7 +46,7 @@ setselectedColor(col);
     };
   }
 // handel addtocart function 
-const handeladdToCart = ()=>{
+const handeladdToCart = async ()=>{
   if(!selectedSize){
     toast.error("please select size" , {
       duration:1000
@@ -55,22 +59,37 @@ const handeladdToCart = ()=>{
     });
     return;
   }
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  
+  const cartDetails = {
+    guestId:localStorage.getItem("guestId"),
+    userId:userInfo._id,
+    productId:productDetails[0]._id,
+    quantity,
+    size:selectedSize,
+    color:selectedColor
+  }
+ 
   setdisableButton(true);
-   toast.success("Product Added to cart",{duration:1000});
-  setTimeout(()=>{
+  try {
+const ans = await dispatch(AddToCart(cartDetails)).unwrap();
+    toast.success("Product Added to cart");
+
+  } catch (error) {
+    toast.error(error?.data || 'failed to add to cart');
+  }finally{
     setdisableButton(false);
-  },500)
+  }
  
   }
   
   useEffect(() => {
-    console.log("under con");
     
     if (productDetails[0]?.images[0].url) {
       setmainImg(productDetails[0]?.images[0]?.url);
       console.log(productDetails[0]?.images[0]?.url);
     }
-    console.log("under completed");
   }, [productDetails]);
   return (
     <div className="p-1 md:p-6 ">

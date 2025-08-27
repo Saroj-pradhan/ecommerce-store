@@ -23,10 +23,10 @@ function Footer() {
         <div>
             <h3 className='text-lg text-gray-800 mb-4 font-semibold'>Shop</h3>
             <div className='flex flex-col'>
-            <NavLink to={"#"} className={" mb-3.5  hover:text-gray-600 transition-colors"}> Men's Top Wear</NavLink>
-            <NavLink to={"#"} className={" mb-3.5  hover:text-gray-600 transition-colors"}> Women's Bottom Wear</NavLink>
-            <NavLink to={"#"} className={" mb-3.5  hover:text-gray-600 transition-colors"}> Men's Top Wear</NavLink>
-            <NavLink to={"#"} className={" mb-3.5  hover:text-gray-600 transition-colors"}> Women's Bottom Wear</NavLink>
+            <NavLink to="/collections/all?gender=Men&category=Top+Wear" className={" mb-3.5  hover:text-gray-600 transition-colors"}> Men's Top Wear</NavLink>
+            <NavLink to="collections/all?gender=Women&category=Top+Wear" className={" mb-3.5  hover:text-gray-600 transition-colors"}> Women's Top Wear</NavLink>
+            <NavLink to="/collections/all?gender=Men&category=Bottom+Wear" className={" mb-3.5  hover:text-gray-600 transition-colors"}> Men's Bottom Wear</NavLink>
+            <NavLink to="collections/all?gender=Women&category=Bottom+Wear" className={" mb-3.5  hover:text-gray-600 transition-colors"}> Women's Bottom Wear</NavLink>
             </div>
            
         </div>

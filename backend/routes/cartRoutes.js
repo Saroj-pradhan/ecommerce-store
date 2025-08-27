@@ -32,23 +32,26 @@ router.post("/",async (req,res)=>{
 try {
     console.log("inside");
     const {productId,quantity,size,color,guestId,userId} = req.body;
+    console.log(req.body);
     const product = await Product.findById(productId);
     if(!product) return res.send("product not found");
     const carts = await getCart(userId,guestId);
+    console.log(carts);
     //if card exits , update it
     if(carts){
        
         const productIndex = carts.products.findIndex(
         (p)=>p.productId.toString() === productId && (color ? p.color === color : true) &&  (size ? p.size === size : true) 
         )
-
+        console.log(product.images[0].url,"ppppp");
+        console.log(productIndex ,"pi");
         if(productIndex > -1){
             carts.products[productIndex].quantity+=quantity;
         }else{
             carts.products.push({
                 productId,
                 name:product.name,
-                image:product.image[0].url,
+                images:product.images[0].url,
                 price:product.price,
                 size:size,
                 color:color,
@@ -58,10 +61,11 @@ try {
         carts.totalPrice = carts.products.reduce((acc,item)=>(
            acc+(item.price *  item.quantity)
         ),0);
+        console.log(carts);
         await carts.save();
          res.status(200).json(carts);
     }else{
-
+ 
         const newCart =await  Cart.create({
             user:userId?userId:undefined,
             guestId:guestId?guestId:"guest_"+new Date().getTime(),
@@ -69,7 +73,7 @@ try {
             {
                 productId,
                 name:product.name,
-                image:product.images[0].url,
+                images:product.images[0].url,
                 price:product.price,
                 size:size,
                 color:color,
@@ -80,15 +84,11 @@ try {
         })
         res.status(200).json(newCart)
     }
-    
-  
 } catch (error) {
     console.log("Error",error);
-    res.status(505).send("Server Error")
+    res.status(500).send("Server Error")
 }
 })
-
-
 //update quantity of product 
 router.put("/",async (req,res)=>{
     try {

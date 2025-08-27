@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchCart } from "../../Redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import CartContent from "./CartContent";
 function Checkout() {
+  const dispatch = useDispatch();
+  const {carts , loading:cartloading ,error:cartError} = useSelector((state)=>state.cart);
   const navigate = useNavigate();
   console.log(import.meta.env.VITE_Rajaropay_Test_Key);
+  console.log(carts,"jjj")
   const cart = {
     cardProduct: [
       {
@@ -103,7 +109,8 @@ function Checkout() {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
-
+if(cartloading) return <p>Loading cart details ...</p>
+if(cartError) return <p>Error cart Loading...</p>
   return (
     <div>
       <div className="grid grid-cols-1 rtl sm:grid-cols-2 max-w-7xl gap-8 py-1 px-3 h-fit">
@@ -200,13 +207,13 @@ function Checkout() {
             cart <span className="text-black">totals --</span>
           </h2>
           <div>
-            {cart.cardProduct.map((product) => (
+            {carts.products && carts.products.map((product) => (
               <div className="m-2" key={product.produtId}>
                 <div className="flex justify-between">
                   <div className="flex gap-3">
                     <img
                       className="h-[70px] w-[70px]"
-                      src={product.img}
+                      src={product.images}
                       alt=""
                     />
                     <div>
@@ -219,19 +226,20 @@ function Checkout() {
                 </div>
               </div>
             ))}
+           
           </div>
           <div className="mt-4 border-t-2 border-gray-200 pt-4">
             <div className="flex justify-between mb-2 ">
               <p className="text-black">Subtotal</p>
-              <p className="">{cart.total.toLocaleString()} </p>
+              <p className="">{carts.totalPrice} </p>
             </div>
             <div className="flex justify-between mb-2">
               <p className="text-black">Shipping</p>
-              <p className="">$60</p>
+              <p className="">$0</p>
             </div>
             <div className="flex justify-between mb-2 pt-4 border-t-2 border-gray-200 ">
               <p className="text-black font-bold">Total</p>
-              <p className="text-black font-bold">$400 </p>
+              <p className="text-black font-bold">${carts.totalPrice} </p>
             </div>
           </div>
         </div>

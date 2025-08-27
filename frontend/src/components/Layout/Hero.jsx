@@ -27,7 +27,7 @@ function Hero() {
         <p className=" text-gray-200 text-sm tracking-tighter mb-3 text-center">
           Explore our Vacation ready outfits with Fast Worldwide shipping
         </p>
-        <NavLink to="signup" className="text-black bg-white px-7 py-2 rounded ">
+        <NavLink to="collections/all" className="text-black bg-white px-7 py-2 rounded ">
           Shop Now
         </NavLink>
       </div>
