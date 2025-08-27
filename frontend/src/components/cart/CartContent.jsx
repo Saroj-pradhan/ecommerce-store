@@ -7,7 +7,7 @@ function CartContent() {
     const dispatch = useDispatch();
     const {carts ,loading , error} = useSelector((state)=>state.cart);
     useEffect( ()=>{
-         const userId = JSON.parse(localStorage.getItem("userInfo"))._id || null;
+         const userId = JSON.parse(localStorage.getItem("userInfo") || "{}")?._id || null;
         const guestId = localStorage.getItem("guestId") || null;
         console.log(userId,guestId);
      dispatch(fetchCart({userId,guestId}))

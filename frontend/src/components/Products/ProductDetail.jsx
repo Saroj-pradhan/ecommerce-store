@@ -56,10 +56,11 @@ const handeladdToCart = async ()=>{
     });
     return;
   }
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}")?._id || null;;
+  
   const cartDetails = {
     guestId:localStorage.getItem("guestId"),
-    userId:userInfo._id,
+    userId:userInfo,
     productId:id,
     quantity,
     size:selectedSize,

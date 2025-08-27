@@ -9,29 +9,6 @@ function Checkout() {
   const navigate = useNavigate();
   console.log(import.meta.env.VITE_Rajaropay_Test_Key);
   console.log(carts,"jjj")
-  const cart = {
-    cardProduct: [
-      {
-        produtId: 1,
-        name: "T-shirt",
-        color: "blue",
-        size: 3,
-        quantity: 3,
-        price: 1300,
-        img: "https://picsum.photos/200/300?random=1",
-      },
-      {
-        produtId: 2,
-        name: "T-shirt",
-        color: "red",
-        size: 6,
-        quantity: 0,
-        price: 800,
-        img: "https://picsum.photos/200/300?random=2",
-      },
-    ],
-    total: 2000,
-  };
 
   const [checkoutId, setcheckoutId] = useState(null);
   const [shippingAdress, setshippingAdress] = useState({
@@ -79,7 +56,6 @@ function Checkout() {
       alert("Razorpay SDK failed to load.");
       return;
     }
-
     const options = {
       key: import.meta.env.VITE_Rajaropay_Test_Key, // Replace with your Test Key from Razorpay Dashboard 
       amount: cart.total * 100, // amount in paise
