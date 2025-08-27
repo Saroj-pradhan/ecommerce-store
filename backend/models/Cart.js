@@ -8,7 +8,7 @@ productId:{
     required:true
 },
 name:String,
-image:String,
+images:String,
 price:Number,
 size:String,
 color:{type:String},
