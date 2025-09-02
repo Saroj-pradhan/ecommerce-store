@@ -7,7 +7,7 @@ const orderItemSchema = new mongoose.Schema({
         required:true
     },
     name:{type:String,required:true},
-    image:{type:String,required:true},
+    images:{type:String,required:true},
     price:{type:Number,required:true},
     size: {type:String},
     color:{type:String},
@@ -25,6 +25,7 @@ const orderSchema = new mongoose.Schema({
         country:{type:String,required:true}
         },
         paymentMethod:{type:String,required:true},
+        paymentDetails:{type:mongoose.Schema.Types.Mixed},
         totalPrice:{type:Number,required:true},
         isPaid:{type:Boolean,default:false},
         paidAt:{type:Date},
@@ -42,4 +43,4 @@ const orderSchema = new mongoose.Schema({
         },
        
 },{timestamps:true})
-module.exports = mongoose.model("Order",orderSchema)
+module.exports = mongoose.model("Order",orderSchema);

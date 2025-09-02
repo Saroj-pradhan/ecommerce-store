@@ -8,7 +8,7 @@ const checkoutItemSchema = new mongoose.Schema({
         required:true
     },
     name:{type:String,required:true},
-    image:{type:String,required:true},
+    images:{type:String,required:true},
     price:{type:Number,required:true},
     size: {type:String},
     color:{type:String},
@@ -19,6 +19,10 @@ const checkoutSchema = new mongoose.Schema({
     user:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},
     checkoutItems:[checkoutItemSchema],
     shippingAddress:{
+    firstname:{type:String,required:true},
+    lastname:{type:String,required:true},
+    phone:{type:Number,required:true},
+    email:{type:String,required:true},
     address:{type:String,required:true},
     city:{type:String,required:true},
     postalCode:{type:String,required:true},

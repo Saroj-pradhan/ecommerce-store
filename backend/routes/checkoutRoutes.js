@@ -6,10 +6,22 @@ const User = require("../models/User");
 const Product = require("../models/Product");
 const Order = require("../models/Order");
 const {protect} = require("../middleware/authMiddleware");
+const crypto =  require("crypto");
+const Razaropay = require("razorpay");
 
+const razorpay = new Razaropay({
+    key_id:process.env.RAZORPAY_KEY_ID,
+    key_secret:process.env.RAZORPAY_SECRET
+})
 router.post("/",protect,async (req,res)=>{
 const {checkoutItems,shippingAddress,paymentMethod,totalPrice} = req.body;
 if(!checkoutItems || checkoutItems.length === 0) return res.status(404).send('no Items in checkOut');
+console.log(totalPrice,"kkk"); 
+const options = {
+    amount: totalPrice * 100, // Amount in paise (e.g., 500 INR = 50000 paise)
+    currency: 'INR',
+    receipt: `receipt_${Date.now()}`,
+  };
 try {
     const newCheckout = await Checkout.create({
         user:req.user._id,
@@ -20,10 +32,10 @@ try {
         paymentStatus:"Pending",
         isPaid:false
     })
-    console.log("checkout created for user",req.user);
-    res.status(201).json(newCheckout);
+    const createorderRazorpay = await razorpay.orders.create(options);
+    res.status(201).json({createorderRazorpay,checkoutId:newCheckout._id});
 } catch (error) {
-      console.error("Checkout creation failed:", error.message);
+      console.error("Checkout creation failed:", error);
     res.status(500).send("Server Error");
 }
 
@@ -32,21 +44,27 @@ try {
 // checkout 
 router.post("/:id/pay",async (req,res)=>{
     try {
-        const {paymentDetails,paymentStatus} = req.body;
+        const {paymentDetails,verifyDetails} = req.body;
         const checkout = await Checkout.findById(req.params.id);
         if(!checkout){
             return res.status(404).json({message:"Checkout not found"});
         }
-        if(paymentStatus === "paid"){
-            checkout.isPaid = true;
-            checkout.paymentStatus=paymentStatus;
-            checkout.paymentDetails = paymentDetails;
+       const {razorpay_order_id,razorpay_payment_id,razorpay_signature} = verifyDetails;
+         const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);
+    hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+    const generatedSignature = hmac.digest("hex");
+
+    if (generatedSignature === razorpay_signature) {
+         checkout.isPaid = true;
+            checkout.paymentStatus="paid";
+            checkout.paymentDetails = {...paymentDetails,...verifyDetails};
             checkout.paidAt = Date.now();
             await checkout.save();
-            res.status(200).json(checkout);
-        }else{
-          res.status(404).json({message:"Invalid Payment Status"});
-        }
+        res.json({ success: true, message: "Payment verified successfully",checkout });
+    } else {
+        res.json({ success: false, message: "Payment verification failed"});
+    }
+       
     } catch (error) {
         console.error("Checkout creation failed:", error.message);
           res.status(500).send("Server Error");
@@ -57,6 +75,7 @@ router.post("/:id/pay",async (req,res)=>{
 router.post("/:id/finalize",async (req,res)=>{
     try {
         const checkout = await Checkout.findById(req.params.id);
+       
         if(!checkout){
             return res.status(404).json({message:"Checkout not found"});
         }
@@ -80,12 +99,13 @@ router.post("/:id/finalize",async (req,res)=>{
             await Cart.findOneAndDelete({user:checkout.user})
             res.status(200).json(finalorder);
         }else if (checkout.isFinalized){
-          res.status(404).json({message:"checkout already finalized"});
+          res.status(404).json({message:"order is already already Created"});
         }else{
-            res.status(400).json({message:"Checkout is not paid"});
+            res.status(400).json({message:"Orderpayment  is not paid"});
         }
     } catch (error) {
-          res.status(500).send("Server Error");
+         console.log(error);
+          res.status(500).send("Server Error",error);
     }
 })
 module.exports = router;
