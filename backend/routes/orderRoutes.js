@@ -4,13 +4,14 @@ const Order = require("../models/Order");
 const {protect} = require("../middleware/authMiddleware");
 // get orders
 router.get("/my-order",protect , async (req,res)=>{
+    console.log("22222");
 try {
-    
     const userId = req.user._id;
     let orderInfo = await Order.find({user:userId}).sort({createdAt:-1});
+     console.log("3333")
    res.send(orderInfo);
 } catch (error) {
-    console.log(error.message);
+    console.log(error);
     res.status(500).send("Server Error");
 }
 })

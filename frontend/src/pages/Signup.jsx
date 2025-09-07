@@ -1,17 +1,23 @@
 import React, { useState ,useEffect} from 'react'
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link , useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../Redux/slices/authSlice';
+import { toast } from 'sonner';
 function Signup() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
     const [name,setname] = useState("");
     const [email,setemail] = useState("");
        const [password,setpassword] = useState("");
-      
+      const {loaing , error} = useSelector((state)=>state.auth);
        const handelLogin = (e)=>{
     e.preventDefault();
    dispatch(registerUser({name,email,password}));
+   toast.success("signup and login also success");
+   navigate("/");
        }
+       if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
   return (
     <div>
          <div className='flex flex-col sm:flex-row md:flex-row lg:flex-row ml-1 mr-1 '>

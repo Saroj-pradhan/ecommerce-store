@@ -6,10 +6,11 @@ const jwtkey = process.env.JWT_SECRET;
 
 //Protect Route To verify jwt token 
 const protect = async (req,res,next)=>{
+    console.log(req.headers.authorization,"auth")
 try {
     if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
    const token = req.headers.authorization.split(" ")[1]; 
-  
+  console.log(token,"tok");
    const decoded =  jwt.verify(token,jwtkey);
    
     req.user =await User.findById(decoded.user.id).select("-password");

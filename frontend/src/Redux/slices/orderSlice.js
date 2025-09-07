@@ -3,13 +3,16 @@ import axios from "axios";
 
 // fetch user orders
 export const fetchUserOrders = createAsyncThunk("orders/fetchOrder", 
+ 
     async (_,{rejectWithValue})=>{
+         console.log(localStorage.getItem("userToken"),"kk");
      try {
-        const {data} =await axios.post(`${import.meta.env.VITE_BACKEND_URL}/orders/my-order`,{},{
+        const {data} =await axios.get(`${import.meta.env.VITE_BACKEND_URL}/orders/my-order`,{
             headers:{
-                Authorization:`Bearer ${localStorage.getItem("userToken")}`
+                authorization:`Bearer ${localStorage.getItem("userToken")}`
             }
         })
+           console.log(localStorage.getItem("userToken","hayyy"))
         return data;
      } catch (error) {
         return rejectWithValue(error.response);

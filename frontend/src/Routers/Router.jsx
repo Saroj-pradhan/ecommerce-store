@@ -17,6 +17,7 @@ import AdminHomePage from "../pages/AdminHomePage"
 import OrderManagement from '../components/Admin/OrderManagement';
 import ProductMangaement from '../components/Products/ProductMangaement';
 import ProductEditPage from '../pages/ProductEditPage';
+import ProtectedRoutes from './ProtectedRoutes';
 function Router() {
   return (
     <div>
@@ -27,14 +28,16 @@ function Router() {
           {/*i want to show the Home component by default when the path is "/" so i write  index*/}
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path='/profile' element={<Profile/>}></Route>
+          <Route path='/profile' element={<ProtectedRoutes><Profile/></ProtectedRoutes>}></Route>
           <Route path="/collections/:collection" element={<CollectionPage/>}></Route>
           <Route path="collections/:Men/products/:id" element={<ProductDetail/>}/>
           <Route path="/products/:id" element={<ProductDetail/>}></Route>
-          <Route path="/checkout" element={<Checkout/>}></Route>
+         
+          <Route path="/checkout" element={<ProtectedRoutes><Checkout/></ProtectedRoutes>}></Route>
           <Route path='/order-confirmation' element={<OrderConfirmation/>}></Route>
           <Route path="/orderDetails/:id" element={<OrderDetailsPage/>}></Route>
           <Route path="/my-orders" element={<MyOrders/>}></Route>
+          
           <Route path="/admin" element={<AdminLayout/>}>
           <Route index  element={<AdminHomePage/>}></Route>
            <Route  path='/admin/ordermanagement' element={<OrderManagement/>}></Route>

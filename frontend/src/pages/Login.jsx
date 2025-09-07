@@ -1,16 +1,33 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import { loginUser } from '../Redux/slices/authSlice';
-
-import { useDispatch } from 'react-redux';
+import { toast } from 'sonner';
+import { useDispatch,useSelector} from 'react-redux';
+import { mergeUsers } from '../Redux/slices/cartSlice';
 function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email,setemail] = useState("");
    const [password,setpassword] = useState("");
-   const handelLogin = (e)=>{
+  const handelLogin = async (e)=>{
 e.preventDefault();
-dispatch(loginUser({email,password}));
+const guestId = localStorage.getItem("guestId");
+console.log("guest",guestId);
+try{
+const loginStatus =await  dispatch(loginUser({email,password}));
+const mergeStatus = await dispatch(mergeUsers(guestId));
+ navigate("/");
+  console.log(loginStatus,mergeStatus,"kkkkk");
+}catch(err){
+toast.error(err.message);
+    console.error("Login Failed ❌", err);
+}
+
+
+
+ 
    }
+   const {user,guestId} = useSelector((state)=>state.auth) 
   return (
     <div>
          <div className='flex flex-col sm:flex-row md:flex-row lg:flex-row px-1.5 '>

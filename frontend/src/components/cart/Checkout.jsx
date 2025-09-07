@@ -231,7 +231,11 @@ if(cartError) return <p>Error cart Loading...</p>
                       <p className="text-gray-700">Color {product.color}</p>
                     </div>
                   </div>
-                  <p className="text-black">${product.price}</p>
+                  <div>
+                       <p className="text-black">${product.price} × {product.quantity}</p>
+                   {/* <p className="text-black">{product.quantity}</p> */}
+                  </div>
+                 
                 </div>
               </div>
             ))}
