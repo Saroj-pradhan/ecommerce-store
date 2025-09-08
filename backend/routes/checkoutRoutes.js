@@ -18,7 +18,7 @@ const {checkoutItems,shippingAddress,paymentMethod,totalPrice} = req.body;
 if(!checkoutItems || checkoutItems.length === 0) return res.status(404).send('no Items in checkOut');
 console.log(totalPrice,"kkk"); 
 const options = {
-    amount: totalPrice * 100, // Amount in paise (e.g., 500 INR = 50000 paise)
+    amount: Math.round(Number(totalPrice) * 100), // Amount in paise (e.g., 500 INR = 50000 paise)
     currency: 'INR',
     receipt: `receipt_${Date.now()}`,
   };

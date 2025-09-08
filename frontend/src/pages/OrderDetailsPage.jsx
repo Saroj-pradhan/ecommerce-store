@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+// import { useSelector } from "react-redux";
 function OrderDetailsPage() {
+  //  const {orders} = useSelector((state)=>state.orders);
   const { id } = useParams();
   // const [orderDetail,setorderDetail] = useState(null);
   const orderDetail = {
@@ -33,35 +35,7 @@ function OrderDetailsPage() {
     address: { city: "Ganjam", stste: " Odisha" },
   };
   useEffect(() => {
-    const mockdetail = {
-      orderItem: [
-        {
-          produtId: "ekeheif83482ejh32",
-          name: "T-shirt",
-          color: "red",
-          size: "L",
-          quantity: 0,
-          price: 800,
-          img: "https://picsum.photos/200/300?random=2",
-        },
-        {
-          produtId: 1,
-          name: "T-shirt",
-          color: "blue",
-          size: "M",
-          quantity: 3,
-          price: 1300,
-          img: "https://picsum.photos/200/300?random=1",
-        },
-      ],
-      isPaid: true,
-      orderId: "gyu333",
-      createdAt: "22/12/2003",
-      isDelivered: false,
-      paymentMethod: "UPI",
-      shippingMethod: "standard",
-      address: { city: "Ganjam", stste: " Odisha" },
-    };
+    
     // setorderDetail(mockdetail);
   }, [id]);
   return (

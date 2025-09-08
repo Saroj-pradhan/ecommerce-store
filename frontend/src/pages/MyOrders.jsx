@@ -29,7 +29,7 @@ function MyOrders() {
   }
 
   const handelorderDetail = (orderId) => {
-    navigate(`/products/${orderId}`);
+    navigate(`/orderDetails/${orderId}`);
   };
 
   return (

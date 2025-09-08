@@ -25,7 +25,7 @@ function Collection() {
         <div className="relative flex-1">
           <img
             className="h-[500px] object-cover object-top w-full"
-            src="https://res.cloudinary.com/dddmddgzs/image/upload/v1756131830/1753791196_img_0_gtsawn.webp"
+            src="https://res.cloudinary.com/dddmddgzs/image/upload/v1757358807/istockphoto-1287867826-612x612_z8uzle.webp"
             alt=""
             
           />

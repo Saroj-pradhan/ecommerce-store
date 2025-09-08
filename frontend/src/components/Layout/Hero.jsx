@@ -19,7 +19,7 @@ function Hero() {
       />
       <div className="bg-black/25 absolute inset-0 w-full flex flex-col justify-center items-center ">
         <h3 className="text-4xl md:text-7xl text-white font-bold uppercase">
-          Ganesh Puja
+          Durga Puja
         </h3>
         <p className="text-4xl md:text-7xl text-yellow-600 font-bold uppercase mb-3">
           Special
