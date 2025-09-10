@@ -13,6 +13,7 @@ export const fetchUserOrders = createAsyncThunk("orders/fetchOrder",
             }
         })
            console.log(localStorage.getItem("userToken","hayyy"))
+          
         return data;
      } catch (error) {
         return rejectWithValue(error.response);
@@ -21,15 +22,18 @@ export const fetchUserOrders = createAsyncThunk("orders/fetchOrder",
 );
 // fetch user orders by Id
 export const fetchOrderDetails = createAsyncThunk("orders/fetchOrderDetails", 
-    async (orderId,{rejectWithValue})=>{
+    async ({orderId},{rejectWithValue})=>{
+        console.log(`Bearer ${localStorage.getItem("userToken")}`)
      try {
-        const {data} =await axios.post(`${import.meta.env.VITE_BACKEND_URL}/orders/${orderId}`,{},{
+        const {data} =await axios.get(`${import.meta.env.VITE_BACKEND_URL}/orders/${orderId}`,{
             headers:{
-                Authorization:`Bearer ${localStorage.getItem("userToken")}`
+                authorization:`Bearer ${localStorage.getItem("userToken")}`
             }
         })
+         console.log(orderId,"orderId8")
         return data;
      } catch (error) {
+        console.log(error,"errsli");
         return rejectWithValue(error.response);
      }
     }
@@ -68,10 +72,13 @@ state.error = null;
     .addCase(fetchOrderDetails.fulfilled,(state,action)=>{
 state.loading=false;
 state.error = null;
+
+console.log(action.payload,"paylaod");
 state.orderDetails = action.payload;
    })
    .addCase(fetchOrderDetails.rejected,(state,action)=>{
 state.loading=false;
+console.log(action.payload,"eror")
 state.error = action.payload?.message;
    })
     }

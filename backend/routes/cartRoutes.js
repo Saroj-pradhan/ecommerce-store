@@ -18,9 +18,7 @@ if(userId){
 router.get("/",async (req,res)=>{
     try {
      const {userId,guestId} = req.query;
-     console.log("dt",userId,guestId)
      const CartDetail = await getCart(userId,guestId);
-     console.log(CartDetail,"det")
      if(!CartDetail) return res.status(404).send("Cart Not Found");
      res.status(200).json(CartDetail);
     } catch (error) {
@@ -62,7 +60,7 @@ try {
         carts.totalPrice = carts.products.reduce((acc,item)=>(
            acc+(item.price *  item.quantity)
         ),0);
-        console.log(carts);
+        console.log(carts,"carts");
         await carts.save();
          res.status(200).json(carts);
     }else{

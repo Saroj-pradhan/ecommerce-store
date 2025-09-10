@@ -2,6 +2,7 @@ import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {createCheckout} from "../../Redux/slices/checkoutSlice";
+import {toast} from "sonner";
 import axios from "axios";
 function Checkout() {
   const dispatch = useDispatch();
@@ -95,11 +96,11 @@ function Checkout() {
 
     if(paymentverify.data.success){
       let createOrder = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/checkout/${ans?.payload?.checkoutId}/finalize`)
-      console.log(createOrder);
-      navigate("/order-confirmation");
+      console.log(createOrder,"createorder");
+      console.log(createOrder?.data?._id);
+      navigate(`/order-confirmation/${createOrder?.data?._id}`);
     }else{
-   alert("payment failed");
-
+       toast.error("payment failed try again");
     }
       },
       prefill: {

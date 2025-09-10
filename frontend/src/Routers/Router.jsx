@@ -34,7 +34,7 @@ function Router() {
           <Route path="/products/:id" element={<ProductDetail/>}></Route>
          
           <Route path="/checkout" element={<ProtectedRoutes><Checkout/></ProtectedRoutes>}></Route>
-          <Route path='/order-confirmation' element={<OrderConfirmation/>}></Route>
+          <Route path='/order-confirmation/:id' element={<OrderConfirmation/>}></Route>
           <Route path="/orderDetails/:id" element={<OrderDetailsPage/>}></Route>
           <Route path="/my-orders" element={<MyOrders/>}></Route>
           
