@@ -18,6 +18,7 @@ import OrderManagement from '../components/Admin/OrderManagement';
 import ProductMangaement from '../components/Products/ProductMangaement';
 import ProductEditPage from '../pages/ProductEditPage';
 import ProtectedRoutes from './ProtectedRoutes';
+import AdminProtectRoutes from './AdminProtectRoutes';
 function Router() {
   return (
     <div>
@@ -38,12 +39,12 @@ function Router() {
           <Route path="/orderDetails/:id" element={<OrderDetailsPage/>}></Route>
           <Route path="/my-orders" element={<MyOrders/>}></Route>
           
-          <Route path="/admin" element={<AdminLayout/>}>
-          <Route index  element={<AdminHomePage/>}></Route>
-           <Route  path='/admin/ordermanagement' element={<OrderManagement/>}></Route>
-          <Route path="/admin/usermanagement" element={ <UserManagement/>}></Route>
-          <Route path="/admin/productManage" element={<ProductMangaement/>}></Route>
-          <Route path="/admin/productManage/:id" element={<ProductEditPage/>}></Route>
+          <Route path="/admin" element={<AdminProtectRoutes><AdminLayout/></AdminProtectRoutes>}>
+          <Route index  element={<AdminProtectRoutes><AdminHomePage/></AdminProtectRoutes>}></Route>
+          <Route  path='/admin/ordermanagement' element={<AdminProtectRoutes><OrderManagement/></AdminProtectRoutes>}></Route>
+          <Route path="/admin/usermanagement" element={ <AdminProtectRoutes><UserManagement/></AdminProtectRoutes>}></Route>
+          <Route path="/admin/productManage" element={<AdminProtectRoutes><ProductMangaement/></AdminProtectRoutes>}></Route>
+          <Route path="/admin/productManage/:id" element={<AdminProtectRoutes><ProductEditPage/></AdminProtectRoutes>}></Route>
           </Route>
         </Route>
       </Routes>
