@@ -1,40 +1,41 @@
-import {useState} from "react"
+import {useEffect, useState} from "react";
+import {useDispatch , useSelector} from "react-redux";
+// import {fetchUsers} from "../../Redux/slices/adminSlice";
+import {fetchUsers,addUser , removeUser} from "../../Redux/slices/adminSlice";
+
 function UserManagement() {
+  const dispatch = useDispatch();
    const [userform,setuserform] = useState({
    name:"",
    email:"",
    role:"",
    password:""
   });
-  const [userdata,setuserdata] = useState([{
-   name:"saroj",
-   email:"sarojpradhan7655@gmail.com",
-   role:"admin",
-   password:"sanata@123"
-  },
-  {
-   name:"manoj",
-   email:"earnwithme7655@gmail.com",
-   role:"admin",
-   password:"rocker@123"
-  },
-]);
+const {users,loading,error} = useSelector((state)=>state.admin);
+
+useEffect(()=>{
+  
+dispatch(fetchUsers());
+console.log(users,"users");
+},[])
+console.log(users,"users");
   const handelAddUsers = (event)=>{
+   
+    
     event.preventDefault();
     console.log(event);
-    console.log(userform);
-    console.log(userdata);
-    setuserdata((prev)=>[...prev,userform]);
+    console.log(userform , "jj");
+   
+    console.log("hayyyypp")
+     dispatch(addUser(userform));
+   
   }
 
-  const handelDeleteuser = (mail)=>{
+  const handelDeleteuser = (id)=>{
+  dispatch(removeUser(id));
   
-   setuserdata((prev)=>(
-    prev.filter((person)=>(
-  person.email !== mail
-    ))
-   ))
   }
+
   
   return (
     <div>
@@ -53,12 +54,12 @@ function UserManagement() {
                       <select name="role" id="role" required value={userform.role}  onChange={(e)=>setuserform((prev)=>({...prev,role:e.target.value}))} className="mb-2 outline-gray-500">
                         <option value="">select</option>
                         <option className='sm:w-80% sm:h-20' value="admin">Admin</option>
-                        <option className='sm:w-80% sm:h-20 mb-5 pb-4' value="user">User</option>
+                        <option className='sm:w-80% sm:h-20 mb-5 pb-4' value="customer">User</option>
                       </select>
                       <button  type="submit" className='bg-green-500 text-white px-2 py-1 mt-5 max-w-[150px] '>Add user</button>
                    </form>
                  </div>
-             <div className='w-full max-h-[600px]'>
+             <div className='w-full max-h-[300px] overflow-y-scroll'>
                <table className='w-full'>
                   <thead className='bg-gray-400'>
                      <th className='uppercase p-2'>name</th>
@@ -67,12 +68,12 @@ function UserManagement() {
                      <th className='uppercase p-2'>actions</th>
                   </thead>
                   <tbody>
-                    {userdata.map((user)=>(
-                       <tr>
-                     <td className='text-center'>{user.name}</td>
-                     <td className='text-center  sm:block hidden'>{user.email}</td>
-                     <td className='text-center'>{user.role}</td>
-                     <td className='text-center'><button  onClick={()=>handelDeleteuser(user.email)} className='bg-red-600 m-1 text-white px-2 py-1'>Delete</button></td>
+                    {users.map((user)=>(
+                       <tr key={user?._id}>
+                     <td className='text-center'>{user?.name}</td>
+                     <td className='text-center  sm:block hidden'>{user?.email}</td>
+                     <td className='text-center'>{user?.role}</td>
+                     <td className='text-center'><button  onClick={()=>handelDeleteuser(user?._id)} className='bg-red-600 m-1 text-white px-2 py-1'>Delete</button></td>
                      </tr>
                     ))}
                     

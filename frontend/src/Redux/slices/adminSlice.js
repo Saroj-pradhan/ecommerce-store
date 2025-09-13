@@ -5,6 +5,7 @@ import axios from "axios";
 export const fetchUsers = createAsyncThunk(
   "admin/fetchUsers",
   async (_, { rejectWithValue }) => {
+   
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/admin/users`,
@@ -25,6 +26,7 @@ export const fetchUsers = createAsyncThunk(
 export const addUser = createAsyncThunk(
   "admin/addUser",
   async (userData, { rejectWithValue }) => {
+     console.log("reach999",userData)
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/admin/create-users`,
@@ -35,8 +37,11 @@ export const addUser = createAsyncThunk(
           },
         }
       );
+       console.log(userData,"dta");
+        console.log(data);
       return data;
     } catch (error) {
+      console.log(error)
       return rejectWithValue(error.response?.data || error.message);
     }
   }

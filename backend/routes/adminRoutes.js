@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const {protect,isAdmin} = require("../middleware/authMiddleware");
-//get all users
+//get all users 
 router.get("/users",protect,isAdmin,async (req,res)=>{
     try {
       const users = await User.find();
@@ -15,7 +15,9 @@ router.get("/users",protect,isAdmin,async (req,res)=>{
 //add user by admin only
 router.post("/create-users",protect,isAdmin,async (req,res)=>{
     try {
+        console.log(req.body,"kk")
         const{name,email,password,role} = req.body;
+        console.log(name,email,password,role,"bacck")
         const users = await User.findOne({email});
         if(users) return res.status(400).json({message:"User Already Exist"})
        

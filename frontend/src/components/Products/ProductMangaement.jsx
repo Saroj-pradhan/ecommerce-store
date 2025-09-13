@@ -1,64 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useDispatch,useSelector } from 'react-redux'
+import {fetchAdminProducts} from "../../Redux/slices/adminProductSlice"
 function ProductMangaement() {
-    const [orders,setorders] = useState([
-         {
-    orderId: "ORD1001",
-    name: "Men Printed Hoodie",
-    Price: 2499,
-    sku: "SKU-001",
-    Status: "Processing"
-  },
-  {
-    orderId: "ORD1002",
-    name: "Women Floral Dress",
-    Price: 1999,
-    sku: "SKU-002",
-    Status: "Shipping"
-  },
-  {
-    orderId: "ORD1003",
-    name: "Sports Running Shoes",
-    Price: 3499,
-    sku: "SKU-003",
-    Status: "Delivered"
-  },
-  {
-    orderId: "ORD1004",
-    name: "Bluetooth Headphones",
-    Price: 1599,
-    sku: "SKU-004",
-    Status: "Cancelled"
-  },
-  {
-    orderId: "ORD1005",
-    name: "Laptop Backpack",
-    Price: 1299,
-    sku: "SKU-005",
-    Status: "Processing"
-  },
-  {
-    orderId: "ORD1006",
-    name: "Analog Wrist Watch",
-    Price: 2199,
-    sku: "SKU-006",
-    Status: "Shipping"
-  },
-  {
-    orderId: "ORD1007",
-    name: "Gaming Keyboard",
-    Price: 2899,
-    sku: "SKU-007",
-    Status: "Delivered"
-  },
-  {
-    orderId: "ORD1008",
-    name: "Smartphone Stand",
-    Price: 499,
-    sku: "SKU-008",
-    Status: "Processing"
-  }
-    ])
+  const dispatch = useDispatch();
+  useEffect(()=>{
+  dispatch(fetchAdminProducts());
+  },[]);
+  const {products , loading,error} = useSelector((state)=>state.adminProduct);
+    
     
     const handelDeleteProduct = (orderId)=>{
    setorders((prev)=>(
@@ -67,15 +17,17 @@ function ProductMangaement() {
     ))
    ))
     }
-
+   console.log(products,"prddd");
+   console.log("load",loading)
+   if(loading) return <p>loading ....</p>
   return (
     <div>
         <div className='p-2'>
             <div>
-                <h2 className='text-2xl font-semibold p-2'>ProductMangaement</h2>
+                <h2 className='text-2xl font-semibold p-2'>Product Management</h2>
             </div>
-            <div className='w-full p-1 overflow-y-scroll overflow-x-scroll'>
-                <table className='w-full'>
+            <div className='w-full p-1  overflow-x-scroll'>
+              {products ?  <table className='w-full overflow-y-scroll max-h-[500px]'>
                     <thead>
                         <tr className='bg-gray-300'>
                             <th className='text-left text-xl font-medium p-3 sm:p-2'>Name</th>
@@ -84,22 +36,22 @@ function ProductMangaement() {
                             <th className='text-left text-xl font-medium p-3 sm:p-2'>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {orders.map((order)=>(
+                    <tbody className='w-full h-[500p]'>
+                        {products?.usersProduct?.map((product)=>(
                            <tr className='border-gray-400 border-1 p-2'>
-                            <td className='text-left pl-1'>{order.name}</td>
-                            <td className='text-left'>{order.Price}</td>
-                            <td className='text-left'>{order.sku}</td>
+                            <td className='text-left pl-1'>{product.name}</td>
+                            <td className='text-left'>{product.price}</td>
+                            <td className='text-left'>{product.sku}</td>
                             <td className='text-left'>
                                 <div className='flex'>
-                                <NavLink to={`/admin/productManage/${order.orderId}`} className='text-white bg-yellow-500 py-1 px-2 rounded m-1'>Edit</NavLink>
-                                <button onClick={()=>handelDeleteProduct(order.orderId)} className='text-white bg-red-500 py-0.5 px-2 rounded m-1'>Delete</button>
+                                <NavLink to={`/admin/productManage/${product._id}`} className='text-white bg-yellow-500 py-1 px-2 rounded m-1'>Edit</NavLink>
+                                <button onClick={()=>handelDeleteProduct(product._id)} className='text-white bg-red-500 py-0.5 px-2 rounded m-1'>Delete</button>
                                 </div></td>
                         </tr>
                         ))}
                         
                     </tbody>
-                </table>
+                </table>:  <p>loading ....</p>}
             </div>
         </div>
     </div>

@@ -1,47 +1,48 @@
-import React,{useState} from "react";
+import React,{useState , useEffect} from "react";
 import { TbPasswordUser } from "react-icons/tb";
+import { useParams } from "react-router-dom"; 
+import { useSelector , useDispatch } from "react-redux";
+import {fetchAdminProducts} from "../Redux/slices/adminProductSlice";
 
 function ProductEditPage() {
-  const [orderInfo, setorderInfo] = useState({
-    _id: "",
-    name: "",
-    price: "",
-    orignalPrice: "",
-    description: "",
-    brand: "",
-    countInStock:0,
-    sku:0,
-    categories:"",
-    material: [],
-    colors: [],
-    sizes:[],
-    images: [
-      {
-        url: "https://picsum.photos/500/500?random=8",
-        altText: "",
-      },
-      {
-        url: "https://picsum.photos/500/500?random=9",
-        altText: "",
-      },
-    ],
-  });
+  const dispatch = useDispatch();
+  const {id} = useParams();
+
+  const {products , loading} = useSelector((state)=>state.adminProduct);
+ let editproduct = products?.usersProduct?.find((product)=>product._id === id) || null;
+   const [orderInfo, setorderInfo] = useState(
+    editproduct
+);
+useEffect(()=>{
+  if(!products?.usersProduct || products?.usersProduct.length === 0){
+    console.log("hiiii");
+    dispatch(fetchAdminProducts());
+  }
+},[dispatch,products,id]);
+
+  
+ useEffect(()=>{
+
+  if(editproduct){
+   setorderInfo(editproduct);
+}},[editproduct]);
+  
   const handelFormdata = (e) => {
     const{name,value} = e.target;
-    console.log(name,value);
+  
     setorderInfo((prev)=>(
         {...prev,[name]:value}
     ))
   };
   const handelImageUpload =async (e)=>{
   const imgs = e.target.files[0];
- console.log(imgs)
   }
   const handelSubmit = (e)=>{
 e.preventDefault();
-console.log("mdnjd")
-console.log(orderInfo)
   }
+
+
+  if(loading || !orderInfo) return <p>loading ....</p>
   return (
     <div className="w-full sm:w-[80%]  mx-auto ">
       <div className="p-2  w-full">
@@ -86,7 +87,7 @@ console.log(orderInfo)
               type="number"
               name="countInStock"
               id="stock"
-              value={orderInfo.countInStock}
+              value={78}
               onChange={handelFormdata}
                required
             />
@@ -107,8 +108,8 @@ console.log(orderInfo)
               name="sizes"
               id="sizes"
                required
-              value={orderInfo.sizes.join(",")}
-              onChange={(e)=>setorderInfo((prev)=>({...prev,sizes:e.target.value.split(",").map((size)=>size.trim())}))}
+              value={orderInfo.size.join(",")}
+              onChange={(e)=>setorderInfo((prev)=>({...prev,sizes:e.target.value.split(",").map((sizes)=>sizes.trim())}))}
             />
             <label htmlFor="colors">Colers (comma separated)</label>
             <input
